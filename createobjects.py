@@ -138,3 +138,4 @@ def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
     average_nota_df = df.groupby(["Região"])[nota_columns].mean()
 
     return average_nota_df
+

@@ -3,10 +3,10 @@ import data_cleaner as dc
 import graphs
 
 # specifies the data location
-data_path = "./dataframes/resultados_cpc_2021.csv"
+data_path = "./data/dataframes/resultados_cpc_2021.csv"
 
 # specifies the directory where the graphs will be saved
-graphs_path = "./graphs"
+graphs_path = "./data/graphs"
 
 # import and cleans the dataframe
 messy_df = co.load_data_as_df(data_path)

@@ -57,10 +57,20 @@ def create_graph_non_attendance(df:pd.DataFrame) -> plt:
 
 def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt:
 
-    dataframe.plot.bar()
+    colors = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"]
+    
+    dataframe.plot.bar(color=colors)
 
-    plt.xlabel("Regiões", fontsize=10)
-    plt.ylabel("Nota média padronizada")
-    plt.title("Notas médias por Região")
+    legend_labels = ["Organização Didático-Pedagógica", "Infraestrutura e Instalações Físicas", "Oportunidade de Ampliação da Formação", "Regime de Trabalho"]
+
+    plt.legend(labels = legend_labels, title = "Categoria", title_fontsize = 14, fontsize = 12)
+
+    plt.tick_params(rotation = 0, labelsize = 16)
+    plt.xlabel("Regiões", fontsize=18)
+    plt.ylabel("Nota média padronizada", fontsize = 18)
+    plt.ylim(top = 5.9)
+    plt.title("Notas médias por Região", fontsize=24)
+
+    plt.gcf().set_size_inches(20, 14)
 
     return plt
