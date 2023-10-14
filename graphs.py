@@ -54,3 +54,14 @@ def create_graph_non_attendance(df:pd.DataFrame) -> None:
 
     # Save plot
     plt.savefig('non_attendance.png', dpi=300, bbox_inches='tight')
+
+
+def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt.figure:
+
+    dataframe.plot.bar()
+
+    plt.xlabel("Regiões", fontsize=10)
+    plt.ylabel("Nota média padronizada")
+    plt.title("Notas médias por Região")
+
+    return plt
