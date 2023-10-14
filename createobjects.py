@@ -84,7 +84,7 @@ def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     return df_desist
 
 
-def create_region_column_df(df, uf_column):
+def create_region_column_df(df, uf_column) -> pd.DataFrame:
 
     region_mapper = {
         'AC': 'Norte',
