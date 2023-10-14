@@ -5,6 +5,7 @@ Contains functions that load the Excel file and create the pd.DataFrame objects 
 import pandas as pd
 import openpyxl
 import zipfile
+import datacleaner as dc
 
 # openpyxl is used by pandas when calling the `read_excel` function. It was
 # imported here so the script can ensure the user have it installed before
@@ -55,9 +56,8 @@ def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     df_1["Área de Avaliação"].dropna(inplace=True)
 
     # Remove everything after '(', leaving only the course name
-    df_1['Área de Avaliação'] = df_1['Área de Avaliação'].apply(lambda x: x.split('(')[0].strip() if isinstance(x, str) else x)
-
-    df_1["Área de Avaliação"] = df_1["Área de Avaliação"].str.title()
+    # Capitalize the first letter of each word
+    df_1 = dc.area_de_avaliacao_cleaner(df_1)
 
     # Create new column with the ration between the difference between enrolled and participants divided by enrolled
     df_1["Taxa de Desistência"] = (df_1[" Nº de Concluintes Inscritos"] - df_1[" Nº de Concluintes Participantes"])/df_1[" Nº de Concluintes Inscritos"]
@@ -74,23 +74,10 @@ def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     # Get final dataframe with the non attendance mean of each course
     df_desist = df_1.groupby('Área de Avaliação')['Taxa de Desistência Média'].first().reset_index()
     df_desist.sort_values(by=['Taxa de Desistência Média'], inplace=True, ascending=False)
-    
-    dictionary = {
-        "Tecnologia Em Redes De Computadores": "Redes De Computadores",
-        "Tecnologia Em Análise E Desenvolvimento De Sistemas": "Desenvolvimento De Sistemas",
-        "Tecnologia Em Gestão Da Tecnologia Da Informação": "Gestão De T.I."
-    }
 
-    # Change names that are too long
-    df_desist["Área de Avaliação"] = df_desist["Área de Avaliação"].apply(lambda x: dictionary[x] if x in dictionary else x)
+    df_desist = dc.area_de_avaliacao_long(df_desist)
     
     return df_desist
 
 # Dataframe used to plot the course x non attendance rate graph
 df_non_attendance = create_non_attendance_df(df)
-
-
-    #Get final dataframe with the non attendance mean of each course
-    df_desist = df_1.groupby('Área de Avaliação')['Taxa de Desistência Média'].first().reset_index()
-
-    return df_desist
