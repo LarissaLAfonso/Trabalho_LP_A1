@@ -10,7 +10,7 @@ import pandas as pd
 import createobjects as co
 import textwrap
 
-def create_graph_non_attendance(df:pd.DataFrame) -> None:
+def create_graph_non_attendance(df:pd.DataFrame) -> plt:
     """
     Creates a horizontal bar graph with the non attendance rate of each course
 
@@ -52,11 +52,10 @@ def create_graph_non_attendance(df:pd.DataFrame) -> None:
     plt.yticks(positions, wrapped_labels, fontsize=6)
     plt.title("Taxa de Desistência Média por Curso")
 
-    # Save plot
-    plt.savefig('non_attendance.png', dpi=300, bbox_inches='tight')
+    return plt
 
 
-def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt.figure:
+def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt:
 
     dataframe.plot.bar()
 
