@@ -5,7 +5,7 @@ Contains functions that load the Excel file and create the pd.DataFrame objects 
 import pandas as pd
 import openpyxl
 import zipfile
-import datacleaner as dc
+import data_cleaner as dc
 
 # openpyxl is used by pandas when calling the `read_excel` function. It was
 # imported here so the script can ensure the user have it installed before
@@ -24,16 +24,20 @@ def load_data_as_df(file_path:str) -> pd.DataFrame:
         A pandas dataframe with the data contained in the excel file
     """
     try:
-        dataframe = pd.read_excel(file_path)
+        if file_path.endswith(".xlsx"):
+            dataframe = pd.read_excel(file_path)
+        else:
+            dataframe = pd.read_csv(file_path)
+            
     except FileNotFoundError:
         print("The file path passed is invalid.")
         quit()
     except zipfile.BadZipfile:
         print("the file could not be read. It is probably corrupted. Consider replacing it.")
         quit()
+
     return dataframe
 
-df = load_data_as_df(r'Trabalho_LP_A1/dataframes/resultados_cpc_2021.xlsx')
 
 def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     """
@@ -79,5 +83,3 @@ def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     
     return df_desist
 
-# Dataframe used to plot the course x non attendance rate graph
-df_non_attendance = create_non_attendance_df(df)
