@@ -1,5 +1,18 @@
 import pandas as pd
 
+
+def dataframe_cleaner(dataframe):
+    
+    # drop useless columns
+    df = dataframe.drop(["Ano", "Observação", "Código da Área", "Código da IES*", "Código do Curso**", "Código do Município***", "Observação"], axis=1)
+
+    # drop useless rows
+    df = df.iloc[:7997]
+
+    df = df[df[" CPC (Faixa)"] != "SC"]
+
+    return df
+
 def area_de_avaliacao_cleaner(dataframe):
 
     df = dataframe.copy()
