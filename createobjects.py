@@ -83,3 +83,58 @@ def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     
     return df_desist
 
+
+def create_region_column_df(df, uf_column):
+
+    region_mapper = {
+        'AC': 'Norte',
+        'AL': 'Nordeste',
+        'AP': 'Norte',
+        'AM': 'Norte',
+        'BA': 'Nordeste',
+        'CE': 'Nordeste',
+        'DF': 'Centro-Oeste',
+        'ES': 'Sudeste',
+        'GO': 'Centro-Oeste',
+        'MA': 'Nordeste',
+        'MT': 'Centro-Oeste',
+        'MS': 'Centro-Oeste',
+        'MG': 'Sudeste',
+        'PA': 'Norte',
+        'PB': 'Nordeste',
+        'PR': 'Sul',
+        'PE': 'Nordeste',
+        'PI': 'Nordeste',
+        'RJ': 'Sudeste',
+        'RN': 'Nordeste',
+        'RS': 'Sul',
+        'RO': 'Norte',
+        'RR': 'Norte',
+        'SC': 'Sul',
+        'SP': 'Sudeste',
+        'SE': 'Nordeste',
+        'TO': 'Norte'
+    }
+
+    try:
+        region_series = df[uf_column].map(region_mapper)
+        return region_series
+    
+    except KeyError:
+        print("The column does not exist")
+        
+
+def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
+
+    df = dataframe.copy()
+    
+    df["Região"] = create_region_column_df(df, "Sigla da UF ")
+
+    nota_columns = [" Nota Padronizada - Organização Didático-Pedagógica",
+                " Nota Padronizada - Infraestrutura e Instalações Físicas",
+                " Nota Padronizada - Oportunidade de Ampliação da Formação",
+                " Nota Padronizada - Regime de Trabalho"]
+
+    average_nota_df = df.groupby(["Região"])[nota_columns].mean()
+
+    return average_nota_df
