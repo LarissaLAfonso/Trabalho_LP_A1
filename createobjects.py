@@ -159,3 +159,29 @@ def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
 
     return average_nota_df
 
+def create_mean_of_general_grade(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Creates a dataframe with the Enade grade means for each state,
+    only for public universitys.
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        Dataframe used for manipulation.
+
+    Returns
+    -------
+    pd.DataFrame
+        The dataframe with the grade means for each state.
+    """
+
+    data_filter = ((df["Categoria Administrativa"] == "Pública Federal") |
+                  (df["Categoria Administrativa"] == "Pública Estadual") |
+                  (df["Categoria Administrativa"] == "Pública Municipal"))
+    df = df[data_filter]
+    # Groups the dataframe by state so we can get the mean for each one
+    df = df.groupby("Sigla da UF ")
+    means = df[" Conceito Enade (Contínuo)"].mean()
+    means_df = pd.DataFrame(means).reset_index() #Index reset for merge
+
+    return means_df
