@@ -2,6 +2,7 @@ import createobjects as co
 import data_cleaner as dc
 import graphs
 import downloads
+import pandas as pd
 
 # downloads the geojson
 downloads.download_brazil_geojson()
@@ -24,7 +25,7 @@ try:
     non_attendence_df = co.create_non_attendance_df(clean_df)
     average_scores_df = co.create_average_nota_by_region(clean_df)
     grade_means_df = co.create_mean_of_general_grade(clean_df)
-    map_with_means_df = co.merge_map_data_with_means(clean_df, map_gdf)
+    map_with_means_df = pd.merge(map_gdf, clean_df, how="left", on="Sigla da UF ")
 
     # creates the graphs and saves the graphs as .png
     non_attendence_graph = graphs.create_graph_non_attendance(non_attendence_df)

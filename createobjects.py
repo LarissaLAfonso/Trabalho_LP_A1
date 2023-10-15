@@ -324,45 +324,5 @@ def create_mean_of_general_grade(df: pd.DataFrame) -> pd.DataFrame:
 
     return means_df
 
-
-def merge_map_data_with_means(df: pd.DataFrame, gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
-    """
-    Merges Enade grade means data with a GeoDataFrame containing Brazil map data.
-
-    Parameters
-    ----------
-    df: pd.DataFrame
-        DataFrame with the grade means for each state.
-    gdf: gpd.GeoDataFrame
-        GeoDataFrame containing Brazil map data.
-
-    Returns
-    -------
-    gpd.GeoDataFrame
-        The map data with the grade means, ready for plotting.
-
-    Examples:
-    >>> import geopandas as gpd
-    >>> import pandas as pd
-
-    >>> # Sample Enade grade means data
-    >>> enade_means_data = pd.DataFrame({
-    ...     'Sigla da UF ': ['SP', 'RJ', 'MG', 'BA', 'AM', 'PA'],
-    ...     ' Conceito Enade (Contínuo)': [3.5, 4.0, 3.2, 4.5, 3.9, 4.2]
-    ... })
-
-    >>> sample_geojson_file = "./data/map/brasil_estados.json"
-    >>> brazil_map_data = load_data_as_geodf(sample_geojson_file)
-
-    >>> merged_gdf = merge_map_data_with_means(enade_means_data, brazil_map_data)
-    >>> isinstance(merged_gdf, gpd.GeoDataFrame)
-    True
-    >>> ' Conceito Enade (Contínuo)' in merged_gdf.columns
-    True
-    """
-    
-    complete_gdf = pd.merge(gdf, df, how="left", on="Sigla da UF ")
-    return complete_gdf
-
 if __name__ == "__main__":
     doctest.testmod()
