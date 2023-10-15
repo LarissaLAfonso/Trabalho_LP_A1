@@ -278,7 +278,7 @@ def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
 
     except KeyError:
         print(f"The given dataframe doesn't have all needeed columns, consider replacing it.")
-
+        quit()
     else:
         return average_nota_df
 
