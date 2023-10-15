@@ -6,15 +6,18 @@ import pandas as pd
 import geopandas as gpd
 import doctest
 
-def dataframe_cleaner(dataframe):
+
+def dataframe_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
     Clean and preprocess a DataFrame.
 
-    Parameters:
+    Parameters
+    ----------
     dataframe (pd.DataFrame): 
         The original DataFrame to be cleaned.
 
-    Returns:
+    Returns
+    -------
     pd.DataFrame: A cleaned DataFrame.
     """
     
@@ -33,20 +36,23 @@ def dataframe_cleaner(dataframe):
 
     return df
 
-def area_de_avaliacao_cleaner(dataframe):
+
+def area_de_avaliacao_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
     Clean and preprocess a DataFrame, specifically the "Área de Avaliação" column.
 
-    Parameters:
+    Parameters
+    ----------
     dataframe (pd.DataFrame): 
         The original DataFrame with the 'Área de Avaliação' column to be cleaned.
 
-    Returns:
+    Returns
+    -------
     pd.DataFrame: 
         A cleaned DataFrame with the "Área de Avaliação" column modified.
 
-    Examples:
-
+    Examples
+    --------
     >>> data = pd.DataFrame({'Área de Avaliação': ['Science (Physics)', 'arts (music)']})
     >>> cleaned_data = area_de_avaliacao_cleaner(data)
     >>> 'Área de Avaliação' in cleaned_data.columns
@@ -65,17 +71,21 @@ def area_de_avaliacao_cleaner(dataframe):
 
     return df
 
-def nome_da_ies_formater(dataframe):
+
+def nome_da_ies_formater(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
     Clean and preprocess a DataFrame, specifically the "Nome da IES" column.
 
-    Parameters:
+    Parameters
+    ----------
     dataframe (pd.DataFrame): The original DataFrame to be cleaned.
 
-    Returns:
+    Returns
+    -------
     pd.DataFrame: A cleaned DataFrame with the "Nome da IES" column modified.
 
-    Examples:
+    Examples
+    --------
     >>> data = pd.DataFrame({'Nome da IES': ['university of abc', 'escola de matemática aplicada']})
     >>> cleaned_data = nome_da_ies_formater(data)
     >>> 'Nome da IES' in cleaned_data.columns
@@ -91,19 +101,23 @@ def nome_da_ies_formater(dataframe):
 
     return df
 
-def area_de_avaliacao_long(dataframe):
+
+def area_de_avaliacao_long(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
     Modify the names of some courses to make them shorter in a DataFrame.
 
-    Parameters:
+    Parameters
+    ----------
     df (pd.DataFrame): 
         The DataFrame used for modification.
 
-    Returns:
+    Returns
+    -------
     pd.DataFrame:
         A DataFrame with the changed course names.
     
-    Examples:
+    Examples
+    --------
     >>> data = pd.DataFrame({'Área de Avaliação': ['Tecnologia Em Redes De Computadores', 'Tecnologia Em Análise E Desenvolvimento De Sistemas', 'Other']})
     >>> modified_data = area_de_avaliacao_long(data)
     >>> modified_data['Área de Avaliação'].tolist()
@@ -123,19 +137,23 @@ def area_de_avaliacao_long(dataframe):
 
     return df
 
+
 def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """
     Add state names to a GeoDataFrame containing Brazil map data.
 
-    Parameters:
+    Parameters
+    ----------
     gdf (gpd.GeoDataFrame): 
         The original GeoDataFrame with unmodified Brazil map data.
 
-    Returns:
+    Returns
+    -------
     gpd.GeoDataFrame: 
         A GeoDataFrame with improved data and a new "Sigla da UF" column.
     
-    Examples:
+    Examples
+    --------
     >>> gdf = gpd.GeoDataFrame({'codarea': [12, 27, 16], 'geometry': [None, None, None]})
     >>> gdf_with_state = add_state_name_to_data(gdf)
     >>> 'Sigla da UF ' in gdf_with_state.columns
