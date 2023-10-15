@@ -3,7 +3,7 @@ Contains functions that create and save plots in png format.
 """
 
 import matplotlib.pyplot as plt
-from matplotlib.cm import get_cmap
+import matplotlib as mpl
 from matplotlib.colors import Normalize
 import numpy as np
 import pandas as pd
@@ -44,8 +44,8 @@ def create_graph_non_attendance(dataframe: pd.DataFrame) -> plt:
     norm = Normalize(vmin=dataframe["Taxa de Desistência Média"].min(), vmax=dataframe["Taxa de Desistência Média"].max())
 
     # Choose a colormap (sequential)
-    cmap = get_cmap('coolwarm')
-
+    cmap = mpl.colormaps["coolwarm"]
+    
     # Create a horizontal bar plot with a color gradient
     fig, ax = plt.subplots(figsize=(20, 15), constrained_layout=False)
 
@@ -60,10 +60,10 @@ def create_graph_non_attendance(dataframe: pd.DataFrame) -> plt:
     bars = ax.barh(positions, width=non_attendance, height=0.8, color=cmap(norm(non_attendance)))
 
     # Labeling and customization
-    plt.xlabel("Cursos", fontsize=10)
-    plt.ylabel("Taxa de desistência média")
-    plt.yticks(positions, wrapped_labels, fontsize=6)
-    plt.title("Taxa de Desistência Média por Curso")
+    plt.ylabel("Cursos", fontsize=18)
+    plt.xlabel("Taxa de desistência média", fontsize=18)
+    plt.yticks(positions, wrapped_labels, fontsize=8)
+    plt.title("Taxa de Desistência Média por Curso", fontsize=24)
 
     return plt
 
