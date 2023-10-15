@@ -1,4 +1,3 @@
-
 from createobjects import *
 import pandas as pd
 import geopandas as gpd
@@ -126,6 +125,39 @@ class TestCreateAverageNotaByRegion(unittest.TestCase):
         # quits the program when the dataframe passed is missing a column
         with self.assertRaises(SystemExit):
             create_average_nota_by_region(sample_data)
-            
+
+
+class TestCreateMeanOfGeneralScore(unittest.TestCase):
+
+    # Test with a dataframe containing only public universities
+    def test_only_public_universities(self):
+        sample_data = pd.DataFrame({
+            'Sigla da UF ': ['SP', 'RJ', 'MG'],
+            'Categoria Administrativa': ['Pública Federal', 'Pública Estadual', 'Pública Federal'],
+            ' Conceito Enade (Contínuo)': [4.5, 4.5, 5]
+        })
+
+        mean_score_df = create_mean_of_general_score(sample_data)
+
+        mean_score_dict = mean_score_df.to_dict()
+        expected_mean_score_dict = {'Sigla da UF ': {0: 'MG', 1: 'RJ', 2: 'SP'}, ' Conceito Enade (Contínuo)': {0: 5.0, 1: 4.5, 2: 4.5}}
+
+        self.assertEqual(mean_score_dict, expected_mean_score_dict)
+
+    # Test with a dataframe containing only private universities
+    def test_only_private_universities(self):
+        sample_data = pd.DataFrame({
+            'Sigla da UF ': ['SP', 'RJ', 'MG'],
+            'Categoria Administrativa': ['Privada', 'Privada', 'Privada'],
+            ' Conceito Enade (Contínuo)': [4.5, 4.5, 5]
+        })
+
+        mean_score_df = create_mean_of_general_score(sample_data)
+
+        mean_score_dict = mean_score_df.to_dict()
+        expected_mean_score_dict = {'Sigla da UF ': {}, ' Conceito Enade (Contínuo)': {}}
+
+        self.assertEqual(mean_score_dict, expected_mean_score_dict)
+
 if __name__ == '__main__':
     unittest.main()
