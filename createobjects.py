@@ -202,5 +202,5 @@ def merge_map_data_with_means(df: pd.DataFrame, gdf: gpd.GeoDataFrame) -> gpd.Ge
         The map data with the means, ready to be plotted
     """
 
-    complete_gdf = gpd.merge(gdf, df, how = "left", on = "Código da UF ")
+    complete_gdf = pd.merge(gdf, df, how = "left", on = "Sigla da UF ")
     return complete_gdf
