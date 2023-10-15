@@ -1,4 +1,5 @@
 import pandas as pd
+import geopandas as gpd
 
 def dataframe_cleaner(dataframe):
 
@@ -64,3 +65,19 @@ def area_de_avaliacao_long(df):
     df["Área de Avaliação"] = df["Área de Avaliação"].apply(lambda x: dictionary[x] if x in dictionary else x)
 
     return df
+
+def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    gdf.rename(columns = {"codarea": "Código da UF"}, inplace = True)
+    gdf = gdf.astype({"Código da UF": int}) #no inplace option here
+
+    uf_codes = {
+        12:"AC", 27:"AL", 16:"AP", 13:"AM", 29:"BA", 23:"CE", 53:"DF", 32:"ES",
+        52:"GO", 21:"MA", 51:"MT", 50:"MS", 31:"MG", 15:"PA", 25:"PB", 41:"PR",
+        26:"PE", 22:"PI", 24:"RN", 43:"RS", 33:"RJ", 11:"RO", 14:"RR", 42:"SC",
+        35:"SP", 28:"SE", 17:"TO"
+    }
+    def map_code(element):
+        return uf_codes[element]
+    gdf["Sigla da UF"] = gdf["Código da UF"].apply(map_code)
+
+    return gdf
