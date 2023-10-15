@@ -14,6 +14,7 @@ import data_cleaner as dc
 
 def load_data_as_df(file_path:str) -> pd.DataFrame:
     """Loads the data from a .xlsx file and return a pandas dataframe.
+
     Parameters
     ----------
     file_path: str
@@ -41,6 +42,7 @@ def load_data_as_df(file_path:str) -> pd.DataFrame:
 
 def load_data_as_geodf(file_path:str) -> gpd.GeoDataFrame:
     """Loads the map data from a .json file and return a geopandas geodataframe.
+
     Parameters
     ----------
     file_path: str
