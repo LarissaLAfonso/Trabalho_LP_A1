@@ -4,9 +4,9 @@ Analysis of The Mean Non Attendance Rates for Each Course - Larissa
 =======================
 
     I chose to analyse the mean non attendance rates by courses offered by institutions of undergraduate learning throughout Brazil.
-   The course with the highest non attendance rate is Computer Networks (pt. Redes de Computadores), with almost 37% of mean non attendance, followed by Management of Information Technologies (pt. Gestão de Tecnologia de Informação) and Social Sciences (pt. Ciências Sociais), with 36% and 33% of mean non attendance, respectively.
-   The major with the highest attendance, however, has meager 17% of mean non attendance, followed by Chemistry and Mathematics, both with a rate of 19%.
-   By that analysis one can't see any major correlations between course areas and non attendance rates. Some points worth mentioning are that majors realted to Information Technologies have non attendance rates greater than average, and that courses in Natural Sciences such as Physics, Mathematics and Chemistry seem to have fairly low non attendance rates.
+    The course with the highest non attendance rate is Computer Networks (pt. Redes de Computadores), with almost 37% of mean non attendance, followed by Management of Information Technologies (pt. Gestão de Tecnologia de Informação) and Social Sciences (pt. Ciências Sociais), with 36% and 33% of mean non attendance, respectively.
+    The major with the highest attendance, however, has meager 17% of mean non attendance, followed by Chemistry and Mathematics, both with a rate of 19%.
+    By that analysis one can't see any major correlations between course areas and non attendance rates. Some points worth mentioning are that majors realted to Information Technologies have non attendance rates greater than average, and that courses in Natural Sciences such as Physics, Mathematics and Chemistry seem to have fairly low non attendance rates.
 
 >>> import createobjects as co
 >>> import data_cleaner as dc
