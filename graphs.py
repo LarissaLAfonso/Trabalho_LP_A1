@@ -100,7 +100,7 @@ def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
     ax.get_yaxis().set_visible(False)
 
     # Add title
-    plt.xlabel("Média do Conceito Enade dos cursos de cada estado, "\
+    plt.title("Média do Conceito Enade dos cursos de cada estado, "\
                "para instituições públicas", fontsize=10)
 
     return plt
