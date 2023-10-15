@@ -3,6 +3,7 @@ Contains functions that load the Excel file and create the pd.DataFrame objects 
 """
 
 import pandas as pd
+import geopandas as gpd
 import openpyxl
 import zipfile
 import data_cleaner as dc
@@ -38,6 +39,25 @@ def load_data_as_df(file_path:str) -> pd.DataFrame:
 
     return dataframe
 
+def load_data_as_geodf(file_path:str) -> gpd.GeoDataFrame:
+    """Loads the map data from a .json file and return a geopandas geodataframe.
+    Parameters
+    ----------
+    file_path: str
+        The path to where the file with data is located.
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        A geopandas geodataframe with the map data for plotting.
+    """
+    try:
+        geodataframe = gpd.read_file(file_path)
+    except FileNotFoundError:
+        print("The file path passed is invalid.")
+        quit()
+
+    return geodataframe
 
 def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     """
