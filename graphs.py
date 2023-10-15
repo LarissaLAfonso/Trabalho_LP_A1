@@ -7,6 +7,7 @@ from matplotlib.cm import get_cmap
 from matplotlib.colors import Normalize
 import numpy as np
 import pandas as pd
+import geopandas as gpd
 import createobjects as co
 import textwrap
 
@@ -73,4 +74,8 @@ def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt:
 
     plt.gcf().set_size_inches(20, 14)
 
+    return plt
+
+def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
+    gdf.plot(column = " Conceito Enade (Contínuo)", cmap = "Greys")
     return plt
