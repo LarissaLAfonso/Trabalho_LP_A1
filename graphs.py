@@ -77,5 +77,30 @@ def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt:
     return plt
 
 def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
-    gdf.plot(column = " Conceito Enade (Contínuo)", cmap = "Greys")
+    """
+    Creates a map containg avergae Enade scores of each state
+
+    Parameters
+    ----------
+    gdf: gpd.GeoDataFrame
+        The map data with needed information
+
+    Returns
+    -------
+    None
+    """
+
+    # Plot the map with shdes of green representing the average score
+    gdf.plot(column = " Conceito Enade (Contínuo)", cmap = "Greens", legend = True)
+
+    # Hide the axis numbers since they represent latitude and longitude, and
+    # have no meaning to the viz
+    ax = plt.gca()
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+
+    # Add title
+    plt.xlabel("Média do Conceito Enade dos cursos de cada estado, "\
+               "para instituições públicas", fontsize=10)
+
     return plt
