@@ -75,8 +75,14 @@ def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     pd.DataFrame
         A pandas dataframe with the data of the average non attendance rate for each course
     """
+    
     # Create new dataframe with only the columns we need
-    df_1 = df[['Área de Avaliação', ' Nº de Concluintes Inscritos', ' Nº de Concluintes Participantes']]
+    try:
+        df_1 = df[['Área de Avaliação', ' Nº de Concluintes Inscritos', ' Nº de Concluintes Participantes']]
+    except AttributeError:
+        print("""That dataframe is not supposed to be as an argument for that function. 
+              It should be obtained from the 'resultados_cpc_2021.xlsx' file.""")
+        quit()
 
     # Drop missing values
     df_1["Área de Avaliação"].dropna(inplace=True)
