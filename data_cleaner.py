@@ -1,3 +1,7 @@
+"""
+This module contains a set of functions for cleaning and preprocessing the data used to create the visualizations.
+"""
+
 import pandas as pd
 import geopandas as gpd
 import doctest
