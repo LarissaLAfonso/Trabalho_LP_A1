@@ -21,7 +21,7 @@ def create_graph_non_attendance(df:pd.DataFrame) -> plt:
 
     Returns
     -------
-    None
+    plt
     """
 
     # Define data for each axis of the bar graph
@@ -56,29 +56,46 @@ def create_graph_non_attendance(df:pd.DataFrame) -> plt:
     return plt
 
 
-def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt:
+def create_graph_average_scores_by_region(df: pd.DataFrame) -> plt:
+    """
+    Creates a grouped bar graph with the average scores by region
 
+    Parameters
+    ----------
+    df: pd.DataFrame
+        The dataframe with the needed data, the data must be preprocessed
+
+    Returns
+    -------
+    plt
+    """
+
+    # creates the colors list
     colors = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"]
-    
-    dataframe.plot.bar(color=colors)
 
+    df.plot.bar(color=colors)
+
+    # format the legend labels
     legend_labels = ["Organização Didático-Pedagógica", "Infraestrutura e Instalações Físicas", "Oportunidade de Ampliação da Formação", "Regime de Trabalho"]
-
     plt.legend(labels = legend_labels, title = "Categoria", title_fontsize = 14, fontsize = 12)
 
-    plt.tick_params(rotation = 0, labelsize = 16)
+    # format the texts of the plot
     plt.xlabel("Regiões", fontsize=18)
     plt.ylabel("Nota média padronizada", fontsize = 18)
-    plt.ylim(top = 5.9)
     plt.title("Notas médias por Região", fontsize=24)
 
+    # adjust the graph axis
+    plt.ylim(top = 5.9)
+    plt.tick_params(rotation = 0, labelsize = 16)
+
+    # adjust the size of the figure
     plt.gcf().set_size_inches(20, 14)
 
     return plt
 
 def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
     """
-    Creates a map containg avergae Enade scores of each state
+    Creates a map containg average Enade scores of each state
 
     Parameters
     ----------
@@ -87,10 +104,10 @@ def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
 
     Returns
     -------
-    None
+    plt
     """
 
-    # Plot the map with shdes of green representing the average score
+    # Plot the map with shades of green representing the average score
     gdf.plot(column = " Conceito Enade (Contínuo)", cmap = "Greens", legend = True)
 
     # Hide the axis numbers since they represent latitude and longitude, and
