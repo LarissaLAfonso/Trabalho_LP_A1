@@ -1,10 +1,14 @@
 import createobjects as co
 import data_cleaner as dc
 import graphs
+import downloads
+
+# downloads the geojson
+downloads.download_brazil_geojson()
 
 # specifies the data location
 data_path = "./data/dataframes/resultados_cpc_2021.csv"
-map_path = "./brasil_estados.json"
+map_path = "./data/map/brasil_estados.json"
 
 # specifies the directory where the graphs will be saved
 graphs_path = "./data/graphs"
