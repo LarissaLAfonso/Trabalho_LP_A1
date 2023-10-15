@@ -1,19 +1,34 @@
+.. _index:
+
 Linguagens de Programação - A1
 ===================================
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 0
+    :hidden:
 
-Documentations
-==================
+    index
 
-Go to this page to get an index of all modules created to this project.
+    data_analysis_larissa
+    data_analysis_pedro
+    data_analysis_vitor
 
-* :ref:`modindex`
+    create_objects_doc
+    data_clean_doc
+    downloads_doc
+    graphs_doc
 
 Data Analysis
-===============
+----------------
 
 * :ref:`data_analysis_larissa`
 * :ref:`data_analysis_pedro`
 * :ref:`data_analysis_vitor`
+
+
+Documentations
+----------------
+
+Go to this page to get an index of all modules created to this project.
+
+* :ref:`modindex`
