@@ -79,7 +79,7 @@ def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     # Create new dataframe with only the columns we need
     try:
         df_1 = df[['Área de Avaliação', ' Nº de Concluintes Inscritos', ' Nº de Concluintes Participantes']]
-    except AttributeError:
+    except KeyError:
         print("""That dataframe is not supposed to be as an argument for that function. 
               It should be obtained from the 'resultados_cpc_2021.xlsx' file.""")
         quit()
