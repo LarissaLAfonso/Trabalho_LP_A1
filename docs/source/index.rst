@@ -10,3 +10,10 @@ Documentations
 Go to this page to get an index of all modules created to this project.
 
 * :ref:`modindex`
+
+Data Analysis
+===============
+
+* :ref:`data_analysis_larissa`
+* :ref:`data_analysis_pedro`
+* :ref:`data_analysis_vitor`
