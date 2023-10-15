@@ -1,20 +1,34 @@
-.. A1 - Linguagens de Programação documentation master file, created by
-   sphinx-quickstart on Sun Oct 15 01:44:07 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _index:
 
-Welcome to A1 - Linguagens de Programação's documentation!
-==========================================================
+Linguagens de Programação - A1
+===================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 0
+    :hidden:
+
+    index
+
+    data_analysis_larissa
+    data_analysis_pedro
+    data_analysis_vitor
+
+    create_objects_doc
+    data_clean_doc
+    downloads_doc
+    graphs_doc
+
+Data Analysis
+----------------
+
+* :ref:`data_analysis_larissa`
+* :ref:`data_analysis_pedro`
+* :ref:`data_analysis_vitor`
 
 
+Documentations
+----------------
 
-Indices and tables
-==================
+Go to this page to get an index of all modules created to this project.
 
-* :ref:`genindex`
 * :ref:`modindex`
-* :ref:`search`
