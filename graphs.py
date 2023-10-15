@@ -23,6 +23,7 @@ def create_graph_non_attendance(df:pd.DataFrame) -> plt:
     Returns
     -------
     plt
+        The graph plot object
 
     Example
     -------
@@ -79,6 +80,7 @@ def create_graph_average_scores_by_region(df: pd.DataFrame) -> plt:
     Returns
     -------
     plt
+        The graph plot object
 
     Example
     -------
@@ -128,6 +130,7 @@ def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
     Returns
     -------
     plt
+        The graph plot object
     """
 
     # Plot the map with shades of green representing the average score
