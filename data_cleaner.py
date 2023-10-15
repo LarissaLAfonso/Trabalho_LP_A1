@@ -67,6 +67,18 @@ def area_de_avaliacao_long(df):
     return df
 
 def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    """Add the state names to the brazil geojson data.
+
+    Parameters
+    ----------
+    gdf: gpd.GeoDataFrame
+        Dataframe with unmodified brazil map data.
+
+    Returns
+    -------
+    gdf: gpd.GeoDataFrame
+        Dataframe with improved data and column name.
+    """
     gdf.rename(columns = {"codarea": "Código da UF"}, inplace = True)
     gdf = gdf.astype({"Código da UF": int}) #no inplace option here
 
