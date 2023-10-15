@@ -9,32 +9,55 @@ import doctest
 
 def dataframe_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
-    Clean and preprocess a DataFrame.
+    Clean and preprocess the 'resultados_cpc' DataFrame.
+
+    This functions checks if the dataframe have all needed columns to the analysis and graph making process, it also removes all the useless rows.
 
     Parameters
     ----------
-    dataframe (pd.DataFrame): 
-        The original DataFrame to be cleaned.
+    input: dataframe (pandas.DataFrame)
+        Index:
+            RangeIndex
+        Columns:
+            Name: 'Área de Avaliação', dtype: object
+            Name: 'Sigla da UF** ', dtype: object
+            Name: ' Nº de Concluintes Inscritos', dtype: int64
+            Name: ' Nº de Concluintes Participantes', dtype: int64
+            Name: ' Nota Padronizada - FG', dtype: float64
+            Name: ' Nota Padronizada - CE', dtype: float64
+            Name: ' Nota Padronizada - Organização Didático-Pedagógica', dtype: float64
+            Name: ' Nota Padronizada - Infraestrutura e Instalações Físicas', dtype: float64
+            Name: ' Nota Padronizada - Oportunidade de Ampliação da Formação', dtype: float64
 
     Returns
     -------
     pd.DataFrame: A cleaned DataFrame.
+
+    Examples
+    --------
+    >>> data = pd.DataFrame({'Ano': [2021, 2022, 2023], 'Value': [10, 20, 30], ' CPC (Faixa)': ['SC', 'A', 'B']})
+    >>> cleaned_data = dataframe_cleaner(data)
+    >>> cleaned_data.columns
+    Index(['Value', ' CPC (Faixa)'], dtype='object')
     """
     
     # creates a copy of the original dataset
     df = dataframe.copy()
-
-    # remove useless columns
-    df = df.drop(["Ano", "Observação", "Código da Área", "Código da IES*", "Código do Curso**", "Código do Município***", "Observação"], axis=1)
-
-    # remove asterisks from the column names
-    df.columns = df.columns.str.replace("*", "")
-
-    # drop useless rows
-    df = df.iloc[:7997]
     df = df[df[" CPC (Faixa)"] != "SC"]
 
-    return df
+    useful_columns = ["Área de Avaliação", "Sigla da UF** ", "Categoria Administrativa*", " Nº de Concluintes Inscritos", " Nº de Concluintes Participantes", " Conceito Enade (Contínuo)", " Nota Padronizada - Organização Didático-Pedagógica", " Nota Padronizada - Infraestrutura e Instalações Físicas", " Nota Padronizada - Oportunidade de Ampliação da Formação", " Nota Padronizada - Regime de Trabalho"]
+    
+    try:
+        useful_df = df[useful_columns]
+    except KeyError:
+        print(f"The given dataframe doesn't have all needeed columns, consider replacing it.")
+        quit()
+    else:
+        # remove asterisks from the column names
+        useful_df.columns = useful_df.columns.str.replace("*", "")
+        useful_df = useful_df.iloc[:7997]
+
+        return useful_df
 
 
 def area_de_avaliacao_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
@@ -43,12 +66,16 @@ def area_de_avaliacao_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
 
     Parameters
     ----------
-    dataframe (pd.DataFrame): 
-        The original DataFrame with the 'Área de Avaliação' column to be cleaned.
+    input: dataframe (pd.DataFrame): The original DataFrame with the 'Área de Avaliação' column to be cleaned.
+
+        Index:
+            RangeIndex
+        Columns:
+            Name: 'Área de Avaliação', dtype: object
 
     Returns
     -------
-    pd.DataFrame: 
+    pandas.DataFrame: 
         A cleaned DataFrame with the "Área de Avaliação" column modified.
 
     Examples
@@ -62,12 +89,14 @@ def area_de_avaliacao_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
 
     df = dataframe.copy()
+    try:
+        # removes all text after the first bracket, 
+        df["Área de Avaliação"] = df["Área de Avaliação"].str.split("(").str.get(0)
 
-    # removes all text after the first bracket, 
-    df["Área de Avaliação"] = df["Área de Avaliação"].str.split("(").str.get(0)
-
-    # capitalizes the first letter of the text
-    df["Área de Avaliação"] = df["Área de Avaliação"].str.title()
+        # capitalizes the first letter of the text
+        df["Área de Avaliação"] = df["Área de Avaliação"].str.title()
+    except KeyError:
+        print(f"The given dataframe has no column 'Área de Avaliação', consider replacing it.")
 
     return df
 
@@ -79,10 +108,14 @@ def nome_da_ies_formater(dataframe: pd.DataFrame) -> pd.DataFrame:
     Parameters
     ----------
     dataframe (pd.DataFrame): The original DataFrame to be cleaned.
-
+        Index:
+            RangeIndex
+        Columns:
+            Name: 'Área de Avaliação', dtype: object
     Returns
     -------
     pd.DataFrame: A cleaned DataFrame with the "Nome da IES" column modified.
+        
 
     Examples
     --------
@@ -97,7 +130,10 @@ def nome_da_ies_formater(dataframe: pd.DataFrame) -> pd.DataFrame:
     df = dataframe.copy()
 
     # capitalizes the first letter of the text
-    df["Nome da IES"] = df["Nome da IES"].str.title()
+    try:
+        df["Nome da IES"] = df["Nome da IES"].str.title()
+    except KeyError:
+        print(f"The given dataframe has no column 'Nome da IES', consider replacing it.")
 
     return df
 
@@ -133,7 +169,10 @@ def area_de_avaliacao_long(dataframe: pd.DataFrame) -> pd.DataFrame:
     df = dataframe.copy()
 
     # Change names that are too long
-    df["Área de Avaliação"] = df["Área de Avaliação"].apply(lambda x: name_mapper[x] if x in name_mapper else x)
+    try:
+        df["Área de Avaliação"] = df["Área de Avaliação"].apply(lambda x: name_mapper[x] if x in name_mapper else x)
+    except KeyError:
+        print(f"The given dataframe has no column 'Área de Avaliação', consider replacing it.")
 
     return df
 
@@ -163,10 +202,8 @@ def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """
     
     # Rename the column from "codarea" to "Código da UF"
-    gdf.rename(columns={"codarea": "Código da UF"}, inplace=True)
-
     gdf.rename(columns = {"codarea": "Código da UF"}, inplace = True)
-    gdf = gdf.astype({"Código da UF": int}) #no inplace option here
+    gdf = gdf.astype({"Código da UF": int}) # no inplace option here
 
     # Define a dictionary to map state codes to their respective abbreviations
     uf_codes = {
