@@ -1,6 +1,5 @@
 
-from createobjects import load_data_as_df
-from createobjects import load_data_as_geodf
+from createobjects import *
 import pandas as pd
 import geopandas as gpd
 
@@ -55,6 +54,42 @@ class TestLoadDataAsGeodf(unittest.TestCase):
         with self.assertRaises(SystemExit):
             load_data_as_df(file_path)
 
+
+class TestCreateNonAttendanceDf(unittest.TestCase):
+
+    # test with a dataframe containing missing values in 'Área de Avaliação' column
+    def test_missing_values_area_avaliacao(self):
+        # create sample dataframe with missing values in 'Área de Avaliação' column
+        sample_data = pd.DataFrame({
+            'Área de Avaliação': [None, 'Course B', 'Course A', 'Course C'],
+            ' Nº de Concluintes Inscritos': [100, 120, 90, 80],
+            ' Nº de Concluintes Participantes': [80, 110, 70, 70]
+        })
+    
+        result = create_non_attendance_df(sample_data)
+    
+        # check if the 'Taxa de Desistência Média' column is present in the result
+        self.assertIn('Taxa de Desistência Média', result.columns)
+    
+        # check if the result dataframe has more than 0 rows
+        self.assertTrue(len(result) > 0)
+
+    # test with a dataframe containing missing values in some columns
+    def test_missing_values_other_columns(self):
+        # create sample dataframe with missing values in other columns
+        sample_data = pd.DataFrame({
+            'Área de Avaliação': ['Course A', 'Course B', None, 'Course C'],
+            ' Nº de Concluintes Inscritos': [100, None, 90, 80],
+            ' Nº de Concluintes Participantes': [80, 110, 70, None]
+        })
+    
+        result = create_non_attendance_df(sample_data)
+    
+        # check if the 'Taxa de Desistência Média' column is present in the result
+        self.assertIn('Taxa de Desistência Média', result.columns)
+    
+        # check if the result dataframe has more than 0 rows
+        self.assertTrue(len(result) > 0)
 
 
 if __name__ == '__main__':
