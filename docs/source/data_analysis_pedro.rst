@@ -1,16 +1,54 @@
 .. _data_analysis_pedro:
 
-Data Analisys - Pedro
-=====================
+Analysis of the Average Enade Grade for Each State - Pedro
+=========================================================
 
-Some text explaning anything
-Example:
+The analysis I will do is related to the general Enade grade obtained by courses.
+
+The dataset have two columns related to the grades: " Nota Padronizada - CE" and
+" Conceito Enade (Contínuo)". The difference between the two is small, so I chose
+to analyze based on the " Conceito Enade (Contínuo)" column.:
 
 >>> import createobjects
 >>> import data_cleaner
 >>> data_path = "./data/dataframes/resultados_cpc_2021.xlsx"
 >>> raw_df = createobjects.load_data_as_df(data_path)
 >>> df = data_cleaner.dataframe_cleaner(raw_df)
+>>> df[" Conceito Enade (Contínuo)"].mean()
+2.400735623003195
+>>> df[" Nota Padronizada - CE"].mean()
+2.3791958200212995
+
+The means of the two columns are very simillar. As we can see below, the mean
+of the differecens between the two columns is ignorable:
+
+>>> (df[" Conceito Enade (Contínuo)"] - df[" Nota Padronizada - CE"]).mean()
+0.021539802981895634
+
+For the map plotting, I filtered the data to reflect only public universitys.
+We can compare the grade's means for the different university types:
+
+>>> df.groupby("Categoria Administrativa")[" Conceito Enade (Contínuo)"].mean()
+Categoria Administrativa
+Especial                       1.369682
+Privada com fins lucrativos    2.100839
+Privada sem fins lucrativos    2.394795
+Pública Estadual               2.382922
+Pública Federal                2.743884
+Pública Municipal              2.078963
+>>> df.groupby("Categoria Administrativa")[" Conceito Enade (Contínuo)"].std()
+Categoria Administrativa
+Especial                       0.740122
+Privada com fins lucrativos    0.778820
+Privada sem fins lucrativos    0.861284
+Pública Estadual               0.915827
+Pública Federal                0.954435
+Pública Municipal              0.918509
+
+As we can see, they aren't really different; All of them are between 2 and 3.
+
+Now, to the actual plotting, we get the df containing the means for each state:
+
 >>> createobjects.create_mean_of_general_grade(df)
    Sigla da UF    Conceito Enade (Contínuo)
 0            AC                    1.978276
@@ -41,8 +79,11 @@ Example:
 25           SP                    3.201814
 26           TO                    1.829220
 
-(This is copied from python console)
-more explaning, maybe more examples
-then the final result is:
+We can already see that some states excel the others considerably. We will be
+able to see that these states are near each other when we plot a map with this
+data.
+
+After some mapa data manipulation that isn't related to the actual data analysis,
+this is the result:
 
 .. image:: ../../data/graphs/average_grades_states.png

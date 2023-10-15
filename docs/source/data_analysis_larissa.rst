@@ -1,7 +1,7 @@
 .. _data_analysis_larissa:
 
 Analysis of The Mean Non Attendance Rates for Each Course - Larissa
-=======================
+====================================================================
 
 I chose to analyse the mean non attendance rates by courses offered by institutions of undergraduate learning throughout Brazil.
 
