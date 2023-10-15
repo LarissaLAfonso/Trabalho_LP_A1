@@ -10,18 +10,28 @@ import pandas as pd
 import geopandas as gpd
 import createobjects as co
 import textwrap
+import doctest
 
 def create_graph_non_attendance(df:pd.DataFrame) -> plt:
     """
-    Creates a horizontal bar graph with the non attendance rate of each course
+    Creates a horizontal bar graph with the non-attendance rate of each course
 
     Parameters
-    ---------- 
+    ----------
     df: pd.DataFrame
 
     Returns
     -------
     plt
+
+    Example:
+    >>> import pandas as pd
+    >>> data = {'Área de Avaliação': ['Course A', 'Course B', 'Course C'],
+    ...         'Taxa de Desistência Média': [5.2, 3.8, 7.1]}
+    >>> df = pd.DataFrame(data)
+    >>> plot = create_graph_non_attendance(df)
+    >>> plot.__class__.__name__ == "module"
+    True
     """
 
     # Define data for each axis of the bar graph
@@ -68,6 +78,16 @@ def create_graph_average_scores_by_region(df: pd.DataFrame) -> plt:
     Returns
     -------
     plt
+
+    Example:
+    >>> import pandas as pd
+    >>> data = {'Region': ['North', 'South', 'East'],
+    ...         'Category': ['Category A', 'Category B', 'Category C'],
+    ...         'Average Score': [4.2, 3.8, 4.1]}
+    >>> df = pd.DataFrame(data)
+    >>> plot = create_graph_average_scores_by_region(df)
+    >>> plot.__class__.__name__ == "module"
+    True
     """
 
     # creates the colors list
@@ -93,9 +113,10 @@ def create_graph_average_scores_by_region(df: pd.DataFrame) -> plt:
 
     return plt
 
+
 def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
     """
-    Creates a map containg average Enade scores of each state
+    Creates a map containing average Enade scores of each state
 
     Parameters
     ----------
@@ -123,3 +144,7 @@ def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
     plt.gcf().set_size_inches(10, 6)
 
     return plt
+
+
+if __name__ == "__main__":
+    doctest.testmod()
