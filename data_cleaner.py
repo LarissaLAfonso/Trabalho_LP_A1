@@ -1,5 +1,6 @@
 import pandas as pd
 import geopandas as gpd
+import doctest
 
 def dataframe_cleaner(dataframe):
     """
@@ -39,6 +40,15 @@ def area_de_avaliacao_cleaner(dataframe):
     Returns:
     pd.DataFrame: 
         A cleaned DataFrame with the "Área de Avaliação" column modified.
+
+    Examples:
+
+    >>> data = pd.DataFrame({'Área de Avaliação': ['Science (Physics)', 'arts (music)']})
+    >>> cleaned_data = area_de_avaliacao_cleaner(data)
+    >>> 'Área de Avaliação' in cleaned_data.columns
+    True
+    >>> cleaned_data['Área de Avaliação'].tolist()
+    ['Science ', 'Arts ']
     """
 
     df = dataframe.copy()
@@ -60,6 +70,14 @@ def nome_da_ies_formater(dataframe):
 
     Returns:
     pd.DataFrame: A cleaned DataFrame with the "Nome da IES" column modified.
+
+    Examples:
+    >>> data = pd.DataFrame({'Nome da IES': ['university of abc', 'escola de matemática aplicada']})
+    >>> cleaned_data = nome_da_ies_formater(data)
+    >>> 'Nome da IES' in cleaned_data.columns
+    True
+    >>> cleaned_data['Nome da IES'].tolist()
+    ['University Of Abc', 'Escola De Matemática Aplicada']
     """
 
     df = dataframe.copy()
@@ -80,6 +98,12 @@ def area_de_avaliacao_long(dataframe):
     Returns:
     pd.DataFrame:
         A DataFrame with the changed course names.
+    
+    Examples:
+    >>> data = pd.DataFrame({'Área de Avaliação': ['Tecnologia Em Redes De Computadores', 'Tecnologia Em Análise E Desenvolvimento De Sistemas', 'Other']})
+    >>> modified_data = area_de_avaliacao_long(data)
+    >>> modified_data['Área de Avaliação'].tolist()
+    ['Redes De Computadores', 'Desenvolvimento De Sistemas', 'Other']
     """
     
     name_mapper = {
@@ -106,6 +130,14 @@ def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     Returns:
     gpd.GeoDataFrame: 
         A GeoDataFrame with improved data and a new "Sigla da UF" column.
+    
+    Examples:
+    >>> gdf = gpd.GeoDataFrame({'codarea': [12, 27, 16], 'geometry': [None, None, None]})
+    >>> gdf_with_state = add_state_name_to_data(gdf)
+    >>> 'Sigla da UF ' in gdf_with_state.columns
+    True
+    >>> gdf_with_state['Sigla da UF '].tolist()
+    ['AC', 'AL', 'AP']
     """
     
     # Rename the column from "codarea" to "Código da UF"
@@ -129,3 +161,7 @@ def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     gdf["Sigla da UF "] = gdf["Código da UF"].apply(map_code)
 
     return gdf
+
+
+if __name__ == "__main__":
+    doctest.testmod()
