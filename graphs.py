@@ -24,7 +24,8 @@ def create_graph_non_attendance(df:pd.DataFrame) -> plt:
     -------
     plt
 
-    Example:
+    Example
+    -------
     >>> import pandas as pd
     >>> data = {'Área de Avaliação': ['Course A', 'Course B', 'Course C'],
     ...         'Taxa de Desistência Média': [5.2, 3.8, 7.1]}
@@ -79,7 +80,8 @@ def create_graph_average_scores_by_region(df: pd.DataFrame) -> plt:
     -------
     plt
 
-    Example:
+    Example
+    -------
     >>> import pandas as pd
     >>> data = {'Region': ['North', 'South', 'East'],
     ...         'Category': ['Category A', 'Category B', 'Category C'],
