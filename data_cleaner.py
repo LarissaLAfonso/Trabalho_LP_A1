@@ -177,13 +177,13 @@ def area_de_avaliacao_long(dataframe: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+def add_state_name_to_data(geodataframe: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """
     Add state names to a GeoDataFrame containing Brazil map data.
 
     Parameters
     ----------
-    gdf (gpd.GeoDataFrame): 
+    geodataframe (gpd.GeoDataFrame): 
         The original GeoDataFrame with unmodified Brazil map data.
 
     Returns
@@ -202,8 +202,8 @@ def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """
     
     # Rename the column from "codarea" to "Código da UF"
-    gdf.rename(columns = {"codarea": "Código da UF"}, inplace = True)
-    gdf = gdf.astype({"Código da UF": int}) # no inplace option here
+    geodataframe.rename(columns = {"codarea": "Código da UF"}, inplace = True)
+    geodataframe = geodataframe.astype({"Código da UF": int}) # no inplace option here
 
     # Define a dictionary to map state codes to their respective abbreviations
     uf_codes = {
@@ -217,9 +217,9 @@ def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     def map_code(element):
         return uf_codes[element]
     
-    gdf["Sigla da UF "] = gdf["Código da UF"].apply(map_code)
+    geodataframe["Sigla da UF "] = geodataframe["Código da UF"].apply(map_code)
 
-    return gdf
+    return geodataframe
 
 
 if __name__ == "__main__":

@@ -91,13 +91,13 @@ def load_data_as_geodf(file_path:str) -> gpd.GeoDataFrame:
     return geodataframe
 
 
-def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
+def create_non_attendance_df(dataframe:pd.DataFrame) -> pd.DataFrame:
     """
     Creates a dataframe with the non attendance mean of each course
 
     Parameters
     ----------__
-    df: pd.DataFrame
+    dataframe: pd.DataFrame
         Dataframe used for manipulation.
         
     Returns
@@ -110,53 +110,53 @@ def create_non_attendance_df(df:pd.DataFrame) -> pd.DataFrame:
     ...     ' Nº de Concluintes Inscritos': [100, 120, 90, 80],
     ...     ' Nº de Concluintes Participantes': [80, 110, 70, 70]
     ... })
-    >>> df_desist = create_non_attendance_df(sample_data)
-    >>> isinstance(df_desist, pd.DataFrame)
+    >>> df_desistence = create_non_attendance_df(sample_data)
+    >>> isinstance(df_desistence, pd.DataFrame)
     True
-    >>> 'Taxa de Desistência Média' in df_desist.columns
+    >>> 'Taxa de Desistência Média' in df_desistence.columns
     True
-    >>> len(df_desist) > 0
+    >>> len(df_desistence) > 0
     True
     """
 
     # Create new dataframe with only the columns we need
-    df_slice = df[['Área de Avaliação', ' Nº de Concluintes Inscritos', ' Nº de Concluintes Participantes']]
     try:
-        df_1 = df[['Área de Avaliação', ' Nº de Concluintes Inscritos', ' Nº de Concluintes Participantes']]
+        df_slice = dataframe[['Área de Avaliação', ' Nº de Concluintes Inscritos', ' Nº de Concluintes Participantes']]
+    
+        # Drop missing values
+        df_clean = df_slice.dropna(subset=['Área de Avaliação'])
+
+        # Remove everything after '(', leaving only the course name
+        # Capitalize the first letter of each word
+        df_clean = dc.area_de_avaliacao_cleaner(df_clean)
+
+        # Create new column with the ration between the difference between enrolled and participants divided by enrolled
+        df_clean["Taxa de Desistência"] = (df_clean[" Nº de Concluintes Inscritos"] - df_clean[" Nº de Concluintes Participantes"])/df_clean[" Nº de Concluintes Inscritos"]
+
+        # Get the mean in "Taxa de Desistência" for each course
+        grouped_df = df_clean.groupby('Área de Avaliação')['Taxa de Desistência'].mean().reset_index()
+
+        # Merge the two dataframes
+        df_clean = df_clean.merge(grouped_df, on='Área de Avaliação', suffixes=('', ' Média'))
+
+        # Rename the columns
+        df_clean.rename(columns={'D_Mean': 'Mean'}, inplace=True)
+
+        # Get final dataframe with the non attendance mean of each course
+        df_desistence = df_clean.groupby('Área de Avaliação')['Taxa de Desistência Média'].first().reset_index()
+        df_desistence.sort_values(by=['Taxa de Desistência Média'], inplace=True, ascending=False)
+
+        df_desistence = dc.area_de_avaliacao_long(df_desistence)
+        
     except KeyError:
-        print("""That dataframe is not supposed to be as an argument for that function. 
-              It should be obtained from the 'resultados_cpc_2021.xlsx' file.""")
+        print("That dataframe is not supposed to be used as an argument for that function. It should be obtained from the 'resultados_cpc_2021.xlsx' file.")
         quit()
 
-    # Drop missing values
-    df_clean = df_slice.dropna(subset=['Área de Avaliação'])
-
-    # Remove everything after '(', leaving only the course name
-    # Capitalize the first letter of each word
-    df_clean = dc.area_de_avaliacao_cleaner(df_clean)
-
-    # Create new column with the ration between the difference between enrolled and participants divided by enrolled
-    df_clean["Taxa de Desistência"] = (df_clean[" Nº de Concluintes Inscritos"] - df_clean[" Nº de Concluintes Participantes"])/df_clean[" Nº de Concluintes Inscritos"]
-
-    # Get the mean in "Taxa de Desistência" for each course
-    grouped_df = df_clean.groupby('Área de Avaliação')['Taxa de Desistência'].mean().reset_index()
-
-    # Merge the two dataframes
-    df_clean = df_clean.merge(grouped_df, on='Área de Avaliação', suffixes=('', ' Média'))
-
-    # Rename the columns
-    df_clean.rename(columns={'D_Mean': 'Mean'}, inplace=True)
-
-    # Get final dataframe with the non attendance mean of each course
-    df_desist = df_clean.groupby('Área de Avaliação')['Taxa de Desistência Média'].first().reset_index()
-    df_desist.sort_values(by=['Taxa de Desistência Média'], inplace=True, ascending=False)
-
-    df_desist = dc.area_de_avaliacao_long(df_desist)
-    
-    return df_desist
+    else:
+        return df_desistence
 
 
-def create_region_column_df(df: pd.DataFrame, uf_column: str) -> pd.Series:
+def create_region_column_df(dataframe: pd.DataFrame, uf_column: str) -> pd.Series:
     """
     Creates a new series that maps state abbreviations to regions and adds it to the given DataFrame.
 
@@ -220,9 +220,9 @@ def create_region_column_df(df: pd.DataFrame, uf_column: str) -> pd.Series:
 
     try:
         # Map state abbreviations to regions
-        region_series = df[uf_column].map(region_mapper)
+        region_series = dataframe[uf_column].map(region_mapper)
         # Add the resulting series to the DataFrame
-        df['Region'] = region_series
+        dataframe['Region'] = region_series
     except KeyError:
         print("The column does not exist")
     else:
@@ -275,6 +275,7 @@ def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
 
         # Calculate the average nota by region
         average_nota_df = df.groupby(["Região"])[nota_columns].mean()
+
     except KeyError:
         print(f"The given dataframe doesn't have all needeed columns, consider replacing it.")
 
@@ -282,19 +283,19 @@ def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
         return average_nota_df
 
 
-def create_mean_of_general_grade(df: pd.DataFrame) -> pd.DataFrame:
+def create_mean_of_general_score(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
-    Creates a DataFrame with the mean Enade grade for each state, only for public universities.
+    Creates a DataFrame with the mean Enade score for each state, only for public universities.
 
     Parameters
     ----------
     df: pd.DataFrame
-        The DataFrame containing Enade grade data and university information.
+        The DataFrame containing Enade score data and university information.
 
     Returns
     -------
     pd.DataFrame
-        A DataFrame with the mean Enade grade for each state.
+        A DataFrame with the mean Enade score for each state.
 
     Examples:
     >>> sample_data = pd.DataFrame({
@@ -302,27 +303,28 @@ def create_mean_of_general_grade(df: pd.DataFrame) -> pd.DataFrame:
     ...     'Categoria Administrativa': ['Pública Federal', 'Pública Estadual', 'Privada', 'Pública Municipal', 'Pública Federal', 'Pública Estadual'],
     ...     ' Conceito Enade (Contínuo)': [3.5, 4.0, 3.2, 4.5, 3.9, 4.2]
     ... })
-    >>> mean_grade_df = create_mean_of_general_grade(sample_data)
-    >>> isinstance(mean_grade_df, pd.DataFrame)
+    >>> mean_score_df = create_mean_of_general_score(sample_data)
+    >>> isinstance(mean_score_df, pd.DataFrame)
     True
-    >>> mean_grade_df.to_dict()
+    >>> mean_score_df.to_dict()
     {'Sigla da UF ': {0: 'AM', 1: 'BA', 2: 'PA', 3: 'RJ', 4: 'SP'}, ' Conceito Enade (Contínuo)': {0: 3.9, 1: 4.5, 2: 4.2, 3: 4.0, 4: 3.5}}
     """
 
     # Filter for public universities only
-    data_filter = ((df["Categoria Administrativa"] == "Pública Federal") |
-                  (df["Categoria Administrativa"] == "Pública Estadual") |
-                  (df["Categoria Administrativa"] == "Pública Municipal"))
-    df = df[data_filter]
+    data_filter = ((dataframe["Categoria Administrativa"] == "Pública Federal") |
+                  (dataframe["Categoria Administrativa"] == "Pública Estadual") |
+                  (dataframe["Categoria Administrativa"] == "Pública Municipal"))
+    filtered_df = dataframe[data_filter]
 
-    # Group the DataFrame by state to calculate the mean Enade grade for each one
-    df = df.groupby("Sigla da UF ")
-    means = df[" Conceito Enade (Contínuo)"].mean()
+    # Group the DataFrame by state to calculate the mean Enade score for each one
+    filtered_df = filtered_df.groupby("Sigla da UF ")
+    means = filtered_df[" Conceito Enade (Contínuo)"].mean()
 
     # Create a new DataFrame with the calculated means
     means_df = pd.DataFrame(means).reset_index()  # Reset index for merge
 
     return means_df
+
 
 if __name__ == "__main__":
     doctest.testmod()

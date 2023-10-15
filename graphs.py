@@ -12,13 +12,13 @@ import createobjects as co
 import textwrap
 import doctest
 
-def create_graph_non_attendance(df:pd.DataFrame) -> plt:
+def create_graph_non_attendance(dataframe: pd.DataFrame) -> plt:
     """
     Creates a horizontal bar graph with the non-attendance rate of each course
 
     Parameters
     ----------
-    df: pd.DataFrame
+    dataframe: pd.DataFrame
 
     Returns
     -------
@@ -37,11 +37,11 @@ def create_graph_non_attendance(df:pd.DataFrame) -> plt:
     """
 
     # Define data for each axis of the bar graph
-    courses = df['Área de Avaliação'].tolist()
-    non_attendance = df['Taxa de Desistência Média'].tolist()
+    courses = dataframe['Área de Avaliação'].tolist()
+    non_attendance = dataframe['Taxa de Desistência Média'].tolist()
 
     # Define upper and lower bounds to the colorbar
-    norm = Normalize(vmin=df["Taxa de Desistência Média"].min(), vmax=df["Taxa de Desistência Média"].max())
+    norm = Normalize(vmin=dataframe["Taxa de Desistência Média"].min(), vmax=dataframe["Taxa de Desistência Média"].max())
 
     # Choose a colormap (sequential)
     cmap = get_cmap('coolwarm')
@@ -68,7 +68,7 @@ def create_graph_non_attendance(df:pd.DataFrame) -> plt:
     return plt
 
 
-def create_graph_average_scores_by_region(df: pd.DataFrame) -> plt:
+def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt:
     """
     Creates a grouped bar graph with the average scores by region
 
@@ -97,7 +97,7 @@ def create_graph_average_scores_by_region(df: pd.DataFrame) -> plt:
     # creates the colors list
     colors = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"]
 
-    df.plot.bar(color=colors)
+    dataframe.plot.bar(color=colors)
 
     # format the legend labels
     legend_labels = ["Organização Didático-Pedagógica", "Infraestrutura e Instalações Físicas", "Oportunidade de Ampliação da Formação", "Regime de Trabalho"]
@@ -118,13 +118,13 @@ def create_graph_average_scores_by_region(df: pd.DataFrame) -> plt:
     return plt
 
 
-def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
+def create_map_plot_average_score_by_state(geodataframe: gpd.GeoDataFrame) -> plt:
     """
     Creates a map containing average Enade scores of each state
 
     Parameters
     ----------
-    gdf: gpd.GeoDataFrame
+    geodataframe: gpd.GeoDataFrame
         The map data with needed information
 
     Returns
@@ -134,7 +134,7 @@ def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
     """
 
     # Plot the map with shades of green representing the average score
-    gdf.plot(column = " Conceito Enade (Contínuo)", cmap = "Greens", legend = True)
+    geodataframe.plot(column = " Conceito Enade (Contínuo)", cmap = "Greens", legend = True)
 
     # hide the axis numbers since they represent latitude and longitude, and
     # have no meaning to the viz
