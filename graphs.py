@@ -110,7 +110,7 @@ def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
     # Plot the map with shades of green representing the average score
     gdf.plot(column = " Conceito Enade (Contínuo)", cmap = "Greens", legend = True)
 
-    # Hide the axis numbers since they represent latitude and longitude, and
+    # hide the axis numbers since they represent latitude and longitude, and
     # have no meaning to the viz
     ax = plt.gca()
     ax.get_xaxis().set_visible(False)
@@ -119,5 +119,7 @@ def create_map_plot_average_grades_by_state(gdf: gpd.GeoDataFrame) -> plt:
     # Add title
     plt.title("Média do Conceito Enade dos cursos de cada estado, "\
                "para instituições públicas", fontsize=10)
+
+    plt.gcf().set_size_inches(10, 6)
 
     return plt
