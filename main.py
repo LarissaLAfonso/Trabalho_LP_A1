@@ -22,3 +22,6 @@ non_attendence_graph.savefig(f'{graphs_path}/non_attendence.png', dpi=300, bbox_
 
 average_scores_graph = graphs.create_graph_average_scores_by_region(average_scores_df)
 average_scores_graph.savefig(f'{graphs_path}/average_scores.png', dpi=300, bbox_inches='tight')
+
+
+

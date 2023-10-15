@@ -91,6 +91,6 @@ def add_state_name_to_data(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     }
     def map_code(element):
         return uf_codes[element]
-    gdf["Sigla da UF"] = gdf["Código da UF"].apply(map_code)
+    gdf["Sigla da UF "] = gdf["Código da UF"].apply(map_code)
 
     return gdf

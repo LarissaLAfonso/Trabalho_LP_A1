@@ -185,3 +185,22 @@ def create_mean_of_general_grade(df: pd.DataFrame) -> pd.DataFrame:
     means_df = pd.DataFrame(means).reset_index() #Index reset for merge
 
     return means_df
+
+def merge_map_data_with_means(df: pd.DataFrame, gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    """Add the Enade grade means for each state to the map data.
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        Dataframe with the means
+    gdf: pd.GeoDataFrame
+        GeoDataFrame containg Brazil map data
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        The map data with the means, ready to be plotted
+    """
+
+    complete_gdf = gpd.merge(gdf, df, how = "left", on = "Código da UF ")
+    return complete_gdf
