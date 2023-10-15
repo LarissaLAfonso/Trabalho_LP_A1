@@ -40,8 +40,6 @@ Analysis of The Mean Non Attendance Rates for Each Course - Larissa
 17                      Química                    0.189453
 16                    Pedagogia                    0.172567
 
-(This is copied from python console)
-more explaning, maybe more examples
-then the final result is:
+Plotting that information as a bar graph, we have:
 
 .. image:: ../../data/graphs/non_attendance.png
