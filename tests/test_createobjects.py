@@ -9,21 +9,21 @@ class TestLoadDataAsDf(unittest.TestCase):
 
     # loads data from a valid .xlsx file and returns a pandas DataFrame
     def test_load_valid_xlsx_file(self):
-        file_path = "./data/dataframes/resultados_cpc_2021.xlsx"
+        file_path = "./dataframes/resultados_cpc_2021.xlsx"
         df = load_data_as_df(file_path)
         self.assertIsInstance(df, pd.DataFrame)
         self.assertTrue(len(df) > 0)
 
     # loads data from a valid .csv file and returns a pandas DataFrame
     def test_load_valid_csv_file(self):
-        file_path = "./data/dataframes/resultados_cpc_2021.csv"
+        file_path = "./dataframes/resultados_cpc_2021.csv"
         df = load_data_as_df(file_path)
         self.assertIsInstance(df, pd.DataFrame)
         self.assertTrue(len(df) > 0)
 
     # returns a pandas DataFrame with data when file is valid and not empty
     def test_return_dataframe_with_data(self):
-        file_path = "./data/dataframes/resultados_cpc_2021.xlsx"
+        file_path = "./dataframes/resultados_cpc_2021.xlsx"
         df = load_data_as_df(file_path)
         self.assertTrue(len(df) > 0)
 
@@ -38,13 +38,13 @@ class TestLoadDataAsGeodf(unittest.TestCase):
 
     # loads data from a valid .json file and returns a geopandas geodataframe
     def test_valid_json_file(self):
-        file_path = "./data/map/brasil_estados.json"
+        file_path = "./dataframes/brasil_estados.json"
         geodf = load_data_as_geodf(file_path)
         self.assertIsInstance(geodf, gpd.GeoDataFrame)
 
     # loads data from a .json file with multiple features and returns a geopandas geodataframe with multiple rows
     def test_multiple_features(self):
-        file_path = "./data/map/brasil_estados.json"
+        file_path = "./dataframes/brasil_estados.json"
         geodf = load_data_as_geodf(file_path)
         self.assertGreater(len(geodf), 1)
 
@@ -170,13 +170,13 @@ class TestDataFrames(unittest.TestCase):
     def test_if_df_pddf(self):
 
         self.assertIsInstance(load_data_as_df(
-            "./data/dataframes/resultados_cpc_2021.csv"), pd.DataFrame)
+            "./dataframes/resultados_cpc_2021.csv"), pd.DataFrame)
         self.assertIsInstance(load_data_as_df(
-            "./data/dataframes/resultados_cpc_2021.xlsx"), pd.DataFrame)
+            "./dataframes/resultados_cpc_2021.xlsx"), pd.DataFrame)
         self.assertIsInstance(load_data_as_geodf(
-            "./data/map/brasil_estados.json"), gpd.GeoDataFrame)
+            "./dataframes/brasil_estados.json"), gpd.GeoDataFrame)
         dataframe = load_data_as_df(
-            "./data/dataframes/resultados_cpc_2021.csv")
+            "./dataframes/resultados_cpc_2021.csv")
         df_non_attendance = create_non_attendance_df(dataframe)
         self.assertIsInstance(df_non_attendance, pd.DataFrame)
 
@@ -184,7 +184,7 @@ class TestDataFrames(unittest.TestCase):
     def test_check_columns(self):
 
         dataframe = load_data_as_df(
-            "./data/dataframes/resultados_cpc_2021.csv")
+            "./dataframes/resultados_cpc_2021.csv")
         self.assertEqual(dataframe.columns.tolist(), ['Ano', 'Código da Área',
                                                       'Área de Avaliação', 'Grau acadêmico',
                                                       'Código da IES*', 'Nome da IES*', 'Sigla da IES*',
