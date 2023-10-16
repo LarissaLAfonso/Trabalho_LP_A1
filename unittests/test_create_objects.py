@@ -1,10 +1,6 @@
-import sys
-import os
-sys.path.insert(0, os.path.abspath('python_scripts'))
-
-from createobjects import *
 import pandas as pd
 import geopandas as gpd
+from create_objects import *
 
 import unittest
 
