@@ -28,11 +28,11 @@ def download_brazil_geojson() -> None:
         else:
             geojson_data = http_response.json()
     except requests.ConnectionError:
-        print("It wasn't possible to stabilish a connection with the site."
+        print("It wasn't possible to stabilish a connection with the site."\
               " Either the gov site is down or you have no connection to the internet.")
         quit()
     except requests.HTTPError as error:
-        print("The site didn't returned a good status code, which means it "
+        print("The site didn't returned a good status code, which means it "\
               "wasn't possible to download the data.", error)
         quit()
     except requests.Timeout:
