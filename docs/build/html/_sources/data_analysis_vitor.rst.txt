@@ -21,7 +21,7 @@ Norte                                     2.907651                              
 Sudeste                                   2.775890                                     3.092782                                       2.750304                     4.018040  
 Sul                                       3.050434                                     3.354842                                       3.108503                     4.199876  
 
-.. image:: ../../data/graphs/average_scores.png
+.. image:: ../../graphs/average_scores.png
 
 While there aren't any start correlations between the Brazilian regions and their Enade, a surprising aspect worth mentioning is that the Southern region acquired the highest scores in almost all avaliation fields. And while that isn't exactly strange since it's one of the richest regions in the country and with greatest quality of life, one would expect for the Southern region to be in the podium: it's the richest region in the country, and the most renowned institutions of undergraduate learning, such as USP and Unicamp, are located there.
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Module graphs.py &#8212; A1 - Linguagens de Programação 2023 documentation</title>
+    <title>Module create_graphs.py &#8212; A1 - Linguagens de Programação 2023 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -14,7 +14,8 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Module downloads.py" href="downloads_doc.html" />
+    <link rel="next" title="Module data_cleaner.py" href="data_clean_doc.html" />
+    <link rel="prev" title="Module create_objects.py" href="create_objects_doc.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -31,12 +32,12 @@
 
           <div class="body" role="main">
             
-  <section id="module-graphs">
-<span id="module-graphs-py"></span><span id="graphs-doc"></span><h1>Module graphs.py<a class="headerlink" href="#module-graphs" title="Permalink to this heading">¶</a></h1>
+  <section id="module-create_graphs">
+<span id="module-create-graphs-py"></span><span id="graphs-doc"></span><h1>Module create_graphs.py<a class="headerlink" href="#module-create_graphs" title="Permalink to this heading">¶</a></h1>
 <p>Contains functions that create and save plots in png format.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="graphs.create_graph_average_scores_by_region">
-<span class="sig-prename descclassname"><span class="pre">graphs.</span></span><span class="sig-name descname"><span class="pre">create_graph_average_scores_by_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;module</span> <span class="pre">'matplotlib.pyplot'</span> <span class="pre">from</span> <span class="pre">'/home/vitor/.local/lib/python3.11/site-packages/matplotlib/pyplot.py'&gt;</span></span></span><a class="headerlink" href="#graphs.create_graph_average_scores_by_region" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_graphs.create_graph_average_scores_by_region">
+<span class="sig-prename descclassname"><span class="pre">create_graphs.</span></span><span class="sig-name descname"><span class="pre">create_graph_average_scores_by_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;module</span> <span class="pre">'matplotlib.pyplot'</span> <span class="pre">from</span> <span class="pre">'/home/vitor/.local/lib/python3.11/site-packages/matplotlib/pyplot.py'&gt;</span></span></span><a class="headerlink" href="#create_graphs.create_graph_average_scores_by_region" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a grouped bar graph with the average scores by region</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -63,8 +64,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graphs.create_graph_non_attendance">
-<span class="sig-prename descclassname"><span class="pre">graphs.</span></span><span class="sig-name descname"><span class="pre">create_graph_non_attendance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;module</span> <span class="pre">'matplotlib.pyplot'</span> <span class="pre">from</span> <span class="pre">'/home/vitor/.local/lib/python3.11/site-packages/matplotlib/pyplot.py'&gt;</span></span></span><a class="headerlink" href="#graphs.create_graph_non_attendance" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_graphs.create_graph_non_attendance">
+<span class="sig-prename descclassname"><span class="pre">create_graphs.</span></span><span class="sig-name descname"><span class="pre">create_graph_non_attendance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;module</span> <span class="pre">'matplotlib.pyplot'</span> <span class="pre">from</span> <span class="pre">'/home/vitor/.local/lib/python3.11/site-packages/matplotlib/pyplot.py'&gt;</span></span></span><a class="headerlink" href="#create_graphs.create_graph_non_attendance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a horizontal bar graph with the non-attendance rate of each course</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -90,8 +91,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graphs.create_map_plot_average_score_by_state">
-<span class="sig-prename descclassname"><span class="pre">graphs.</span></span><span class="sig-name descname"><span class="pre">create_map_plot_average_score_by_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geodataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GeoDataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;module</span> <span class="pre">'matplotlib.pyplot'</span> <span class="pre">from</span> <span class="pre">'/home/vitor/.local/lib/python3.11/site-packages/matplotlib/pyplot.py'&gt;</span></span></span><a class="headerlink" href="#graphs.create_map_plot_average_score_by_state" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_graphs.create_map_plot_average_score_by_state">
+<span class="sig-prename descclassname"><span class="pre">create_graphs.</span></span><span class="sig-name descname"><span class="pre">create_map_plot_average_score_by_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geodataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GeoDataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;module</span> <span class="pre">'matplotlib.pyplot'</span> <span class="pre">from</span> <span class="pre">'/home/vitor/.local/lib/python3.11/site-packages/matplotlib/pyplot.py'&gt;</span></span></span><a class="headerlink" href="#create_graphs.create_map_plot_average_score_by_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a map containing average Enade scores of each state</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -120,21 +121,21 @@
 <li class="toctree-l1"><a class="reference internal" href="data_analysis_larissa.html">Analysis of The Mean Non Attendance Rates for Each Course - Larissa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_analysis_pedro.html">Analysis of the Average Enade Grade for Each State - Pedro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_analysis_vitor.html">Analysis of the Specifics Scores for Each Region in Brazil - Vitor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="create_objects_doc.html">Module createobjects.py</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_clean_doc.html">Module data_cleaner.py</a></li>
-<li class="toctree-l1"><a class="reference internal" href="downloads_doc.html">Module downloads.py</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Module graphs.py</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#graphs.create_graph_average_scores_by_region"><code class="docutils literal notranslate"><span class="pre">create_graph_average_scores_by_region()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#graphs.create_graph_non_attendance"><code class="docutils literal notranslate"><span class="pre">create_graph_non_attendance()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#graphs.create_map_plot_average_score_by_state"><code class="docutils literal notranslate"><span class="pre">create_map_plot_average_score_by_state()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_objects_doc.html">Module create_objects.py</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Module create_graphs.py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create_graphs.create_graph_average_scores_by_region"><code class="docutils literal notranslate"><span class="pre">create_graph_average_scores_by_region()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create_graphs.create_graph_non_attendance"><code class="docutils literal notranslate"><span class="pre">create_graph_non_attendance()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create_graphs.create_map_plot_average_score_by_state"><code class="docutils literal notranslate"><span class="pre">create_map_plot_average_score_by_state()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="data_clean_doc.html">Module data_cleaner.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloads_doc.html">Module downloads.py</a></li>
 </ul>
 
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/graphs_doc.rst.txt"
+      <li><a href="_sources/create_graphs_doc.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -150,7 +151,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
-      <a href="_sources/graphs_doc.rst.txt"
+      <a href="_sources/create_graphs_doc.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Module createobjects.py &#8212; A1 - Linguagens de Programação 2023 documentation</title>
+    <title>Module create_objects.py &#8212; A1 - Linguagens de Programação 2023 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -14,7 +14,7 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Module data_cleaner.py" href="data_clean_doc.html" />
+    <link rel="next" title="Module create_graphs.py" href="create_graphs_doc.html" />
     <link rel="prev" title="Analysis of the Specifics Scores for Each Region in Brazil - Vitor" href="data_analysis_vitor.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -32,12 +32,12 @@
 
           <div class="body" role="main">
             
-  <section id="module-createobjects">
-<span id="module-createobjects-py"></span><span id="create-objects-doc"></span><h1>Module createobjects.py<a class="headerlink" href="#module-createobjects" title="Permalink to this heading">¶</a></h1>
+  <section id="module-create_objects">
+<span id="module-create-objects-py"></span><span id="create-objects-doc"></span><h1>Module create_objects.py<a class="headerlink" href="#module-create_objects" title="Permalink to this heading">¶</a></h1>
 <p>Contains functions that load the Excel file and create the pd.DataFrame objects used in the project.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="createobjects.create_average_nota_by_region">
-<span class="sig-prename descclassname"><span class="pre">createobjects.</span></span><span class="sig-name descname"><span class="pre">create_average_nota_by_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#createobjects.create_average_nota_by_region" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_objects.create_average_nota_by_region">
+<span class="sig-prename descclassname"><span class="pre">create_objects.</span></span><span class="sig-name descname"><span class="pre">create_average_nota_by_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#create_objects.create_average_nota_by_region" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the average evaluation scores (nota) by region and returns a DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -70,8 +70,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="createobjects.create_mean_of_general_score">
-<span class="sig-prename descclassname"><span class="pre">createobjects.</span></span><span class="sig-name descname"><span class="pre">create_mean_of_general_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#createobjects.create_mean_of_general_score" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_objects.create_mean_of_general_score">
+<span class="sig-prename descclassname"><span class="pre">create_objects.</span></span><span class="sig-name descname"><span class="pre">create_mean_of_general_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#create_objects.create_mean_of_general_score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a DataFrame with the mean Enade score for each state, only for public universities.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -100,8 +100,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="createobjects.create_non_attendance_df">
-<span class="sig-prename descclassname"><span class="pre">createobjects.</span></span><span class="sig-name descname"><span class="pre">create_non_attendance_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#createobjects.create_non_attendance_df" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_objects.create_non_attendance_df">
+<span class="sig-prename descclassname"><span class="pre">create_objects.</span></span><span class="sig-name descname"><span class="pre">create_non_attendance_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#create_objects.create_non_attendance_df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a dataframe with the non attendance mean of each course</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -132,8 +132,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="createobjects.create_region_column_df">
-<span class="sig-prename descclassname"><span class="pre">createobjects.</span></span><span class="sig-name descname"><span class="pre">create_region_column_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uf_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Series</span></span></span><a class="headerlink" href="#createobjects.create_region_column_df" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_objects.create_region_column_df">
+<span class="sig-prename descclassname"><span class="pre">create_objects.</span></span><span class="sig-name descname"><span class="pre">create_region_column_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uf_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Series</span></span></span><a class="headerlink" href="#create_objects.create_region_column_df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new series that maps state abbreviations to regions and adds it to the given DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -168,8 +168,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="createobjects.load_data_as_df">
-<span class="sig-prename descclassname"><span class="pre">createobjects.</span></span><span class="sig-name descname"><span class="pre">load_data_as_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#createobjects.load_data_as_df" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_objects.load_data_as_df">
+<span class="sig-prename descclassname"><span class="pre">create_objects.</span></span><span class="sig-name descname"><span class="pre">load_data_as_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#create_objects.load_data_as_df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads the data from a .xlsx file and return a pandas dataframe.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -202,8 +202,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="createobjects.load_data_as_geodf">
-<span class="sig-prename descclassname"><span class="pre">createobjects.</span></span><span class="sig-name descname"><span class="pre">load_data_as_geodf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GeoDataFrame</span></span></span><a class="headerlink" href="#createobjects.load_data_as_geodf" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="create_objects.load_data_as_geodf">
+<span class="sig-prename descclassname"><span class="pre">create_objects.</span></span><span class="sig-name descname"><span class="pre">load_data_as_geodf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GeoDataFrame</span></span></span><a class="headerlink" href="#create_objects.load_data_as_geodf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads the map data from a .json file and return a geopandas geodataframe.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -241,18 +241,18 @@
 <li class="toctree-l1"><a class="reference internal" href="data_analysis_larissa.html">Analysis of The Mean Non Attendance Rates for Each Course - Larissa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_analysis_pedro.html">Analysis of the Average Enade Grade for Each State - Pedro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_analysis_vitor.html">Analysis of the Specifics Scores for Each Region in Brazil - Vitor</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Module createobjects.py</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#createobjects.create_average_nota_by_region"><code class="docutils literal notranslate"><span class="pre">create_average_nota_by_region()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#createobjects.create_mean_of_general_score"><code class="docutils literal notranslate"><span class="pre">create_mean_of_general_score()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#createobjects.create_non_attendance_df"><code class="docutils literal notranslate"><span class="pre">create_non_attendance_df()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#createobjects.create_region_column_df"><code class="docutils literal notranslate"><span class="pre">create_region_column_df()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#createobjects.load_data_as_df"><code class="docutils literal notranslate"><span class="pre">load_data_as_df()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#createobjects.load_data_as_geodf"><code class="docutils literal notranslate"><span class="pre">load_data_as_geodf()</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Module create_objects.py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create_objects.create_average_nota_by_region"><code class="docutils literal notranslate"><span class="pre">create_average_nota_by_region()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create_objects.create_mean_of_general_score"><code class="docutils literal notranslate"><span class="pre">create_mean_of_general_score()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create_objects.create_non_attendance_df"><code class="docutils literal notranslate"><span class="pre">create_non_attendance_df()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create_objects.create_region_column_df"><code class="docutils literal notranslate"><span class="pre">create_region_column_df()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create_objects.load_data_as_df"><code class="docutils literal notranslate"><span class="pre">load_data_as_df()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create_objects.load_data_as_geodf"><code class="docutils literal notranslate"><span class="pre">load_data_as_geodf()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="create_graphs_doc.html">Module create_graphs.py</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_clean_doc.html">Module data_cleaner.py</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloads_doc.html">Module downloads.py</a></li>
-<li class="toctree-l1"><a class="reference internal" href="graphs_doc.html">Module graphs.py</a></li>
 </ul>
 
   <div role="note" aria-label="source link">

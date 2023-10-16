@@ -86,4 +86,4 @@ data.
 After some mapa data manipulation that isn't related to the actual data analysis,
 this is the result:
 
-.. image:: ../../data/graphs/average_score_states.png
+.. image:: ../../graphs/average_score_states.png

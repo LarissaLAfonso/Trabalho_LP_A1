@@ -42,4 +42,4 @@ By that analysis one can't see any major correlations between course areas and n
 
 Plotting that information as a bar graph, we have:
 
-.. image:: ../../data/graphs/non_attendance.png
+.. image:: ../../graphs/non_attendance.png

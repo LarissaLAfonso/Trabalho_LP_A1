@@ -1,6 +1,6 @@
 .. _create_objects_doc:
 
-Module createobjects.py
+Module create_objects.py
 ==========================
-.. automodule:: createobjects
+.. automodule:: create_objects
    :members:

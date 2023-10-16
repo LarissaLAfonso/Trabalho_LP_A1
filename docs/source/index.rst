@@ -12,9 +12,9 @@ Linguagens de Programação - A1
     data_analysis_vitor
 
     create_objects_doc
+    create_graphs_doc
     data_clean_doc
     downloads_doc
-    graphs_doc
 
 by Larissa Lemos, Pedro Tokar and Vitor Nascimento
 

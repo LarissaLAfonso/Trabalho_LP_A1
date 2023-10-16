@@ -1,6 +1,6 @@
 .. _graphs_doc:
 
-Module graphs.py
+Module create_graphs.py
 ==========================
-.. automodule:: graphs
+.. automodule:: create_graphs
    :members:
