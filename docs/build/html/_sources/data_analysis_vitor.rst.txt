@@ -1,6 +1,6 @@
 .. _data_analysis_vitor:
 
-Analisys of the Specifics Scores for Each Region in Brazil - Vitor
+Analysis of the Specifics Scores for Each Region in Brazil - Vitor
 ==================================================================
 
 I decided to analyse the average scores for each evaluation category in every region of Brazil.
