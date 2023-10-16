@@ -1,11 +1,11 @@
 .. _data_analysis_vitor:
 
-Data Analisys - Vitor
-=====================
+Analisys of the Specifics Scores for Each Region in Brazil - Vitor
+==================================================================
 
 I decided to analyse the average scores for each evaluation category in every region of Brazil.
 
-I also wanted to see if there's a connection between the regions in Brazil and the performance of higher education institutions in the ENADE.
+I also wanted to verify if there’s a connection between the regions in Brazil and the higher performance in education institutions in the Enade.
 
 >>> import createobjects
 >>> import data_cleaner
@@ -23,4 +23,6 @@ Sul                                       3.050434                              
 
 .. image:: ../../data/graphs/average_scores.png
 
-As you can see, there isn't a very clear relationship between the regions in Brazil and their performance in the ENADE. However, it's possible to observe that, on the whole, the northern region tends to have slightly lower scores.
+While there aren't any start correlations between the Brazilian regions and their Enade, a surprising aspect worth mentioning is that the Southern region acquired the highest scores in almost all avaliation fields. And while that isn't exactly strange since it's one of the richest regions in the country and with greatest quality of life, one would expect for the Southern region to be in the podium: it's the richest region in the country, and the most renowned institutions of undergraduate learning, such as USP and Unicamp, are located there.
+
+It was also unexpected to observe that the Southeastern region fell behind the Central-Western in almost all markers, since it's a region particularly known for its quality of education.

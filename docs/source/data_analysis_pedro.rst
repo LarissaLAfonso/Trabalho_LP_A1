@@ -1,7 +1,7 @@
 .. _data_analysis_pedro:
 
 Analysis of the Average Enade Grade for Each State - Pedro
-=========================================================
+==========================================================
 
 The analysis I will do is related to the general Enade grade obtained by courses.
 
