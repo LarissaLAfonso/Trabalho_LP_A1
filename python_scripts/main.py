@@ -8,11 +8,11 @@ import pandas as pd
 downloads.download_brazil_geojson()
 
 # specifies the data location
-data_path = "./data/dataframes/resultados_cpc_2021.csv"
-map_path = "./data/map/brasil_estados.json"
+data_path = "./dataframes/resultados_cpc_2021.csv"
+map_path = "./dataframes/brasil_estados.json"
 
 # specifies the directory where the graphs will be saved
-graphs_path = "./data/graphs"
+graphs_path = "./graphs"
 
 try:
     # import and cleans the dataframe

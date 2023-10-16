@@ -42,5 +42,5 @@ def download_brazil_geojson() -> None:
         print("The gov site didn't returned the data in the desired format.")
         quit()
 
-    with open('./data/map/brasil_estados.json', 'w') as json_file:
+    with open('./dataframes/brasil_estados.json', 'w') as json_file:
         json.dump(geojson_data, json_file)
