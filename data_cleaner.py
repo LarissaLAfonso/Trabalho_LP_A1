@@ -28,6 +28,7 @@ def dataframe_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
             Name: ' Nota Padronizada - Organização Didático-Pedagógica', dtype: float64
             Name: ' Nota Padronizada - Infraestrutura e Instalações Físicas', dtype: float64
             Name: ' Nota Padronizada - Oportunidade de Ampliação da Formação', dtype: float64
+            Name: ' CPC (Faixa)', dtype: object
 
     Returns
     -------
@@ -43,6 +44,8 @@ def dataframe_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
     
     # creates a copy of the original dataset
     df = dataframe.copy()
+
+    # remove rows that represent courses with less than 3 students
     df = df[df[" CPC (Faixa)"] != "SC"]
 
     useful_columns = ["Área de Avaliação", "Sigla da UF** ", "Categoria Administrativa*", " Nº de Concluintes Inscritos", " Nº de Concluintes Participantes", " Conceito Enade (Contínuo)", " Nota Padronizada - Organização Didático-Pedagógica", " Nota Padronizada - Infraestrutura e Instalações Físicas", " Nota Padronizada - Oportunidade de Ampliação da Formação", " Nota Padronizada - Regime de Trabalho"]
@@ -55,6 +58,8 @@ def dataframe_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
     else:
         # remove asterisks from the column names
         useful_df.columns = useful_df.columns.str.replace("*", "")
+
+        # remove useless rows
         useful_df = useful_df.iloc[:7997]
 
         return useful_df
@@ -97,8 +102,10 @@ def area_de_avaliacao_cleaner(dataframe: pd.DataFrame) -> pd.DataFrame:
         df["Área de Avaliação"] = df["Área de Avaliação"].str.title()
     except KeyError:
         print(f"The given dataframe has no column 'Área de Avaliação', consider replacing it.")
+        quit()
 
-    return df
+    else:
+        return df
 
 
 def nome_da_ies_formater(dataframe: pd.DataFrame) -> pd.DataFrame:
@@ -134,8 +141,9 @@ def nome_da_ies_formater(dataframe: pd.DataFrame) -> pd.DataFrame:
         df["Nome da IES"] = df["Nome da IES"].str.title()
     except KeyError:
         print(f"The given dataframe has no column 'Nome da IES', consider replacing it.")
-
-    return df
+        quit()
+    else:
+        return df
 
 
 def area_de_avaliacao_long(dataframe: pd.DataFrame) -> pd.DataFrame:
@@ -200,10 +208,6 @@ def add_state_name_to_data(geodataframe: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     >>> gdf_with_state['Sigla da UF '].tolist()
     ['AC', 'AL', 'AP']
     """
-    
-    # Rename the column from "codarea" to "Código da UF"
-    geodataframe.rename(columns = {"codarea": "Código da UF"}, inplace = True)
-    geodataframe = geodataframe.astype({"Código da UF": int}) # no inplace option here
 
     # Define a dictionary to map state codes to their respective abbreviations
     uf_codes = {
@@ -213,13 +217,22 @@ def add_state_name_to_data(geodataframe: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
         35:"SP", 28:"SE", 17:"TO"
     }
 
+    
+    # Rename the column from "codarea" to "Código da UF"
+    geodataframe.rename(columns = {"codarea": "Código da UF"}, inplace = True)
+    geodataframe = geodataframe.astype({"Código da UF": int}) # no inplace option here
+
     # Define a function to map state codes to abbreviations
     def map_code(element):
         return uf_codes[element]
     
-    geodataframe["Sigla da UF "] = geodataframe["Código da UF"].apply(map_code)
-
-    return geodataframe
+    try:
+        geodataframe["Sigla da UF "] = geodataframe["Código da UF"].map(map_code)
+    except KeyError:
+        print("Invalid State Code, please revise the provided dataset")
+        quit()
+    else:
+        return geodataframe
 
 
 if __name__ == "__main__":
