@@ -106,7 +106,9 @@ def create_non_attendance_df(dataframe: pd.DataFrame) -> pd.DataFrame:
     -------
     pd.DataFrame
         A pandas dataframe with the data of the average non attendance rate for each course
-    Examples:
+
+    Examples
+    --------
     >>> sample_data = pd.DataFrame({
     ...     'Área de Avaliação': ['Course A', 'Course B', 'Course A', 'Course C'],
     ...     ' Nº de Concluintes Inscritos': [100, 120, 90, 80],
@@ -180,7 +182,8 @@ def create_region_column_df(dataframe: pd.DataFrame, uf_column: str) -> pd.Serie
     pd.Series
         A new Pandas Series with region names corresponding to each state abbreviation.
 
-    Examples:
+    Examples
+    --------
     >>> sample_data = pd.DataFrame({
     ...     'State Abbreviation': ['SP', 'RJ', 'MG'],
     ...     'Number': [45500, 17500, 21300]
@@ -251,7 +254,8 @@ def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
     pd.DataFrame
         A DataFrame with the average evaluation scores by region.
 
-    Examples:
+    Examples
+    --------
     >>> sample_data = pd.DataFrame({
     ...     'Sigla da UF ': ['SP', 'RJ', 'MG', 'BA', 'AM', 'PA'],
     ...     ' Nota Padronizada - Organização Didático-Pedagógica': [8.5, 7.2, 6.8, 8.0, 7.5, 6.2],
@@ -306,7 +310,8 @@ def create_mean_of_general_score(dataframe: pd.DataFrame) -> pd.DataFrame:
     pd.DataFrame
         A DataFrame with the mean Enade score for each state.
 
-    Examples:
+    Examples
+    --------
     >>> sample_data = pd.DataFrame({
     ...     'Sigla da UF ': ['SP', 'RJ', 'MG', 'BA', 'AM', 'PA'],
     ...     'Categoria Administrativa': ['Pública Federal', 'Pública Estadual', 'Privada', 'Pública Municipal', 'Pública Federal', 'Pública Estadual'],
