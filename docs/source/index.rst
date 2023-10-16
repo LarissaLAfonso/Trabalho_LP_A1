@@ -7,8 +7,6 @@ Linguagens de Programação - A1
     :maxdepth: 0
     :hidden:
 
-    index
-
     data_analysis_larissa
     data_analysis_pedro
     data_analysis_vitor
