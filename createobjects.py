@@ -13,7 +13,8 @@ import doctest
 # imported here so the script can ensure the user have it installed before
 # trying to run anything.
 
-def load_data_as_df(file_path:str) -> pd.DataFrame:
+
+def load_data_as_df(file_path: str) -> pd.DataFrame:
     """Loads the data from a .xlsx file and return a pandas dataframe.
 
     Parameters
@@ -42,24 +43,25 @@ def load_data_as_df(file_path:str) -> pd.DataFrame:
     >>> len(df_csv) > 0
     True
     """
-    
+
     try:
         if file_path.endswith(".xlsx"):
             dataframe = pd.read_excel(file_path)
         else:
             dataframe = pd.read_csv(file_path)
-            
+
     except FileNotFoundError:
         print("The file path passed is invalid.")
         quit()
     except zipfile.BadZipfile:
-        print("the file could not be read. It is probably corrupted. Consider replacing it.")
+        print(
+            "the file could not be read. It is probably corrupted. Consider replacing it.")
         quit()
     else:
         return dataframe
 
 
-def load_data_as_geodf(file_path:str) -> gpd.GeoDataFrame:
+def load_data_as_geodf(file_path: str) -> gpd.GeoDataFrame:
     """Loads the map data from a .json file and return a geopandas geodataframe.
 
     Parameters
@@ -71,7 +73,7 @@ def load_data_as_geodf(file_path:str) -> gpd.GeoDataFrame:
     -------
     gpd.GeoDataFrame
         A geopandas geodataframe with the map data for plotting.
-        
+
     Examples
     --------
     >>> sample_geojson_file = "./data/map/brasil_estados.json"
@@ -91,7 +93,7 @@ def load_data_as_geodf(file_path:str) -> gpd.GeoDataFrame:
     return geodataframe
 
 
-def create_non_attendance_df(dataframe:pd.DataFrame) -> pd.DataFrame:
+def create_non_attendance_df(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
     Creates a dataframe with the non attendance mean of each course
 
@@ -99,7 +101,7 @@ def create_non_attendance_df(dataframe:pd.DataFrame) -> pd.DataFrame:
     ----------__
     dataframe: pd.DataFrame
         Dataframe used for manipulation.
-        
+
     Returns
     -------
     pd.DataFrame
@@ -121,8 +123,9 @@ def create_non_attendance_df(dataframe:pd.DataFrame) -> pd.DataFrame:
 
     # Create new dataframe with only the columns we need
     try:
-        df_slice = dataframe[['Área de Avaliação', ' Nº de Concluintes Inscritos', ' Nº de Concluintes Participantes']]
-    
+        df_slice = dataframe[[
+            'Área de Avaliação', ' Nº de Concluintes Inscritos', ' Nº de Concluintes Participantes']]
+
         # Drop missing values
         df_clean = df_slice.dropna(subset=['Área de Avaliação'])
 
@@ -131,23 +134,28 @@ def create_non_attendance_df(dataframe:pd.DataFrame) -> pd.DataFrame:
         df_clean = dc.area_de_avaliacao_cleaner(df_clean)
 
         # Create new column with the ration between the difference between enrolled and participants divided by enrolled
-        df_clean["Taxa de Desistência"] = (df_clean[" Nº de Concluintes Inscritos"] - df_clean[" Nº de Concluintes Participantes"])/df_clean[" Nº de Concluintes Inscritos"]
+        df_clean["Taxa de Desistência"] = (df_clean[" Nº de Concluintes Inscritos"] -
+                                           df_clean[" Nº de Concluintes Participantes"])/df_clean[" Nº de Concluintes Inscritos"]
 
         # Get the mean in "Taxa de Desistência" for each course
-        grouped_df = df_clean.groupby('Área de Avaliação')['Taxa de Desistência'].mean().reset_index()
+        grouped_df = df_clean.groupby('Área de Avaliação')[
+            'Taxa de Desistência'].mean().reset_index()
 
         # Merge the two dataframes
-        df_clean = df_clean.merge(grouped_df, on='Área de Avaliação', suffixes=('', ' Média'))
+        df_clean = df_clean.merge(
+            grouped_df, on='Área de Avaliação', suffixes=('', ' Média'))
 
         # Rename the columns
         df_clean.rename(columns={'D_Mean': 'Mean'}, inplace=True)
 
         # Get final dataframe with the non attendance mean of each course
-        df_desistence = df_clean.groupby('Área de Avaliação')['Taxa de Desistência Média'].first().reset_index()
-        df_desistence.sort_values(by=['Taxa de Desistência Média'], inplace=True, ascending=False)
+        df_desistence = df_clean.groupby('Área de Avaliação')[
+            'Taxa de Desistência Média'].first().reset_index()
+        df_desistence.sort_values(
+            by=['Taxa de Desistência Média'], inplace=True, ascending=False)
 
         df_desistence = dc.area_de_avaliacao_long(df_desistence)
-        
+
     except KeyError:
         print("That dataframe is not supposed to be used as an argument for that function. It should be obtained from the 'resultados_cpc_2021.xlsx' file.")
         quit()
@@ -227,7 +235,7 @@ def create_region_column_df(dataframe: pd.DataFrame, uf_column: str) -> pd.Serie
         print("The column does not exist")
     else:
         return region_series
-        
+
 
 def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
     """
@@ -277,7 +285,8 @@ def create_average_nota_by_region(dataframe: pd.DataFrame) -> pd.DataFrame:
         average_nota_df = df.groupby(["Região"])[nota_columns].mean()
 
     except KeyError:
-        print(f"The given dataframe doesn't have all needeed columns, consider replacing it.")
+        print(
+            f"The given dataframe doesn't have all needeed columns, consider replacing it.")
         quit()
     else:
         return average_nota_df
@@ -312,8 +321,8 @@ def create_mean_of_general_score(dataframe: pd.DataFrame) -> pd.DataFrame:
 
     # Filter for public universities only
     data_filter = ((dataframe["Categoria Administrativa"] == "Pública Federal") |
-                  (dataframe["Categoria Administrativa"] == "Pública Estadual") |
-                  (dataframe["Categoria Administrativa"] == "Pública Municipal"))
+                   (dataframe["Categoria Administrativa"] == "Pública Estadual") |
+                   (dataframe["Categoria Administrativa"] == "Pública Municipal"))
     filtered_df = dataframe[data_filter]
 
     # Group the DataFrame by state to calculate the mean Enade score for each one

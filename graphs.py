@@ -12,6 +12,7 @@ import createobjects as co
 import textwrap
 import doctest
 
+
 def create_graph_non_attendance(dataframe: pd.DataFrame) -> plt:
     """
     Creates a horizontal bar graph with the non-attendance rate of each course
@@ -41,23 +42,26 @@ def create_graph_non_attendance(dataframe: pd.DataFrame) -> plt:
     non_attendance = dataframe['Taxa de Desistência Média'].tolist()
 
     # Define upper and lower bounds to the colorbar
-    norm = Normalize(vmin=dataframe["Taxa de Desistência Média"].min(), vmax=dataframe["Taxa de Desistência Média"].max())
+    norm = Normalize(vmin=dataframe["Taxa de Desistência Média"].min(
+    ), vmax=dataframe["Taxa de Desistência Média"].max())
 
     # Choose a colormap (sequential)
     cmap = mpl.colormaps["coolwarm"]
-    
+
     # Create a horizontal bar plot with a color gradient
     fig, ax = plt.subplots(figsize=(20, 15), constrained_layout=False)
 
     # Separate the labels into multiple lines
     wrapped_labels = [textwrap.wrap(label, width=16) for label in courses]
-    wrapped_labels = ["\n".join(wrapped_label) for wrapped_label in wrapped_labels]
+    wrapped_labels = ["\n".join(wrapped_label)
+                      for wrapped_label in wrapped_labels]
 
     # Define the positions of the bars
-    positions = np.arange(len(wrapped_labels)) 
+    positions = np.arange(len(wrapped_labels))
 
     # Create the bar graph
-    bars = ax.barh(positions, width=non_attendance, height=0.8, color=cmap(norm(non_attendance)))
+    bars = ax.barh(positions, width=non_attendance, height=0.8,
+                   color=cmap(norm(non_attendance)))
 
     # Labeling and customization
     plt.ylabel("Cursos", fontsize=18)
@@ -95,22 +99,25 @@ def create_graph_average_scores_by_region(dataframe: pd.DataFrame) -> plt:
     """
 
     # creates the colors list
-    colors = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"]
+    colors = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe",
+              "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"]
 
     dataframe.plot.bar(color=colors)
 
     # format the legend labels
-    legend_labels = ["Organização Didático-Pedagógica", "Infraestrutura e Instalações Físicas", "Oportunidade de Ampliação da Formação", "Regime de Trabalho"]
-    plt.legend(labels = legend_labels, title = "Categoria", title_fontsize = 14, fontsize = 12)
+    legend_labels = ["Organização Didático-Pedagógica", "Infraestrutura e Instalações Físicas",
+                     "Oportunidade de Ampliação da Formação", "Regime de Trabalho"]
+    plt.legend(labels=legend_labels, title="Categoria",
+               title_fontsize=14, fontsize=12)
 
     # format the texts of the plot
     plt.xlabel("Regiões", fontsize=18)
-    plt.ylabel("Nota média padronizada", fontsize = 18)
+    plt.ylabel("Nota média padronizada", fontsize=18)
     plt.title("Notas médias por Região", fontsize=24)
 
     # adjust the graph axis
-    plt.ylim(top = 5.9)
-    plt.tick_params(rotation = 0, labelsize = 16)
+    plt.ylim(top=5.9)
+    plt.tick_params(rotation=0, labelsize=16)
 
     # adjust the size of the figure
     plt.gcf().set_size_inches(20, 14)
@@ -134,7 +141,8 @@ def create_map_plot_average_score_by_state(geodataframe: gpd.GeoDataFrame) -> pl
     """
 
     # Plot the map with shades of green representing the average score
-    geodataframe.plot(column = " Conceito Enade (Contínuo)", cmap = "Greens", legend = True)
+    geodataframe.plot(column=" Conceito Enade (Contínuo)",
+                      cmap="Greens", legend=True)
 
     # hide the axis numbers since they represent latitude and longitude, and
     # have no meaning to the viz
@@ -143,8 +151,8 @@ def create_map_plot_average_score_by_state(geodataframe: gpd.GeoDataFrame) -> pl
     ax.get_yaxis().set_visible(False)
 
     # Add title
-    plt.title("Média do Conceito Enade dos cursos de cada estado, "\
-               "para instituições públicas", fontsize=10)
+    plt.title("Média do Conceito Enade dos cursos de cada estado, "
+              "para instituições públicas", fontsize=10)
 
     plt.gcf().set_size_inches(10, 6)
 

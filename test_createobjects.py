@@ -4,6 +4,7 @@ import geopandas as gpd
 
 import unittest
 
+
 class TestLoadDataAsDf(unittest.TestCase):
 
     # loads data from a valid .xlsx file and returns a pandas DataFrame
@@ -64,12 +65,12 @@ class TestCreateNonAttendanceDf(unittest.TestCase):
             ' Nº de Concluintes Inscritos': [100, 120, 90, 80],
             ' Nº de Concluintes Participantes': [80, 110, 70, 70]
         })
-    
+
         result = create_non_attendance_df(sample_data)
-    
+
         # check if the 'Taxa de Desistência Média' column is present in the result
         self.assertIn('Taxa de Desistência Média', result.columns)
-    
+
         # check if the result dataframe has more than 0 rows
         self.assertTrue(len(result) > 0)
 
@@ -81,12 +82,12 @@ class TestCreateNonAttendanceDf(unittest.TestCase):
             ' Nº de Concluintes Inscritos': [100, None, 90, 80],
             ' Nº de Concluintes Participantes': [80, 110, 70, None]
         })
-    
+
         result = create_non_attendance_df(sample_data)
-    
+
         # check if the 'Taxa de Desistência Média' column is present in the result
         self.assertIn('Taxa de Desistência Média', result.columns)
-    
+
         # check if the result dataframe has more than 0 rows
         self.assertTrue(len(result) > 0)
 
@@ -100,7 +101,8 @@ class TestCreateRegionColumnDf(unittest.TestCase):
             'UF': ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']
         })
 
-        expected_region_list = ['Norte', 'Nordeste', 'Norte', 'Norte', 'Nordeste', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Centro-Oeste', 'Nordeste', 'Centro-Oeste', 'Centro-Oeste', 'Sudeste', 'Norte', 'Nordeste', 'Sul', 'Nordeste', 'Nordeste', 'Sudeste', 'Nordeste', 'Sul', 'Norte', 'Norte', 'Sul', 'Sudeste', 'Nordeste', 'Norte']
+        expected_region_list = ['Norte', 'Nordeste', 'Norte', 'Norte', 'Nordeste', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Centro-Oeste', 'Nordeste', 'Centro-Oeste',
+                                'Centro-Oeste', 'Sudeste', 'Norte', 'Nordeste', 'Sul', 'Nordeste', 'Nordeste', 'Sudeste', 'Nordeste', 'Sul', 'Norte', 'Norte', 'Sul', 'Sudeste', 'Nordeste', 'Norte']
 
         region_series = create_region_column_df(sample_data, 'UF')
 
@@ -140,7 +142,8 @@ class TestCreateMeanOfGeneralScore(unittest.TestCase):
         mean_score_df = create_mean_of_general_score(sample_data)
 
         mean_score_dict = mean_score_df.to_dict()
-        expected_mean_score_dict = {'Sigla da UF ': {0: 'MG', 1: 'RJ', 2: 'SP'}, ' Conceito Enade (Contínuo)': {0: 5.0, 1: 4.5, 2: 4.5}}
+        expected_mean_score_dict = {'Sigla da UF ': {
+            0: 'MG', 1: 'RJ', 2: 'SP'}, ' Conceito Enade (Contínuo)': {0: 5.0, 1: 4.5, 2: 4.5}}
 
         self.assertEqual(mean_score_dict, expected_mean_score_dict)
 
@@ -155,9 +158,11 @@ class TestCreateMeanOfGeneralScore(unittest.TestCase):
         mean_score_df = create_mean_of_general_score(sample_data)
 
         mean_score_dict = mean_score_df.to_dict()
-        expected_mean_score_dict = {'Sigla da UF ': {}, ' Conceito Enade (Contínuo)': {}}
+        expected_mean_score_dict = {
+            'Sigla da UF ': {}, ' Conceito Enade (Contínuo)': {}}
 
         self.assertEqual(mean_score_dict, expected_mean_score_dict)
+
 
 if __name__ == '__main__':
     unittest.main()

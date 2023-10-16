@@ -5,6 +5,7 @@ Module to download some of the data.
 import requests
 import json
 
+
 def download_brazil_geojson() -> None:
     """Requests Brazil map information from IBGE's API and saves it
     in a file named "brasil_estados.json".
@@ -18,7 +19,7 @@ def download_brazil_geojson() -> None:
     None
     """
     download_url = "http://servicodados.ibge.gov.br/api/v3/malhas/paises/BR"\
-    "?formato=application/vnd.geo+json&qualidade=maxima&intrarregiao=UF"
+        "?formato=application/vnd.geo+json&qualidade=maxima&intrarregiao=UF"
     try:
         http_response = requests.get(download_url)
         http_response.raise_for_status()
@@ -27,12 +28,12 @@ def download_brazil_geojson() -> None:
         else:
             geojson_data = http_response.json()
     except requests.ConnectionError:
-        print("It wasn't possible to stabilish a connection with the site."\
-            " Either the gov site is down or you have no connection to the internet.")
+        print("It wasn't possible to stabilish a connection with the site."
+              " Either the gov site is down or you have no connection to the internet.")
         quit()
     except requests.HTTPError as error:
-        print("The site didn't returned a good status code, which means it "\
-            "wasn't possible to download the data.", error)
+        print("The site didn't returned a good status code, which means it "
+              "wasn't possible to download the data.", error)
         quit()
     except requests.Timeout:
         print("There was a timeout while trying to download the data")
