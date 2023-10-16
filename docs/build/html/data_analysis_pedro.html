@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Analysis of the Average Enade Grade for Each State - Pedro &#8212; A1 - Linguagens de Programação 2023 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Analisys - Vitor" href="data_analysis_vitor.html" />
+    <link rel="prev" title="Analysis of The Mean Non Attendance Rates for Each Course - Larissa" href="data_analysis_larissa.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="analysis-of-the-average-enade-grade-for-each-state-pedro">
+<span id="data-analysis-pedro"></span><h1>Analysis of the Average Enade Grade for Each State - Pedro<a class="headerlink" href="#analysis-of-the-average-enade-grade-for-each-state-pedro" title="Permalink to this heading">¶</a></h1>
+<p>The analysis I will do is related to the general Enade grade obtained by courses.</p>
+<p>The dataset have two columns related to the grades: “ Nota Padronizada - CE” and
+“ Conceito Enade (Contínuo)”. The difference between the two is small, so I chose
+to analyze based on the “ Conceito Enade (Contínuo)” column.:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">createobjects</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">data_cleaner</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;./data/dataframes/resultados_cpc_2021.xlsx&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_df</span> <span class="o">=</span> <span class="n">createobjects</span><span class="o">.</span><span class="n">load_data_as_df</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">data_cleaner</span><span class="o">.</span><span class="n">dataframe_cleaner</span><span class="p">(</span><span class="n">raw_df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot; Conceito Enade (Contínuo)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go">2.400735623003195</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot; Nota Padronizada - CE&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go">2.3791958200212995</span>
+</pre></div>
+</div>
+<p>The means of the two columns are very simillar. As we can see below, the mean
+of the differecens between the two columns is ignorable:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot; Conceito Enade (Contínuo)&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot; Nota Padronizada - CE&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go">0.021539802981895634</span>
+</pre></div>
+</div>
+<p>For the map plotting, I filtered the data to reflect only public universitys.
+We can compare the grade’s means for the different university types:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Categoria Administrativa&quot;</span><span class="p">)[</span><span class="s2">&quot; Conceito Enade (Contínuo)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go">Categoria Administrativa</span>
+<span class="go">Especial                       1.369682</span>
+<span class="go">Privada com fins lucrativos    2.100839</span>
+<span class="go">Privada sem fins lucrativos    2.394795</span>
+<span class="go">Pública Estadual               2.382922</span>
+<span class="go">Pública Federal                2.743884</span>
+<span class="go">Pública Municipal              2.078963</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Categoria Administrativa&quot;</span><span class="p">)[</span><span class="s2">&quot; Conceito Enade (Contínuo)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="go">Categoria Administrativa</span>
+<span class="go">Especial                       0.740122</span>
+<span class="go">Privada com fins lucrativos    0.778820</span>
+<span class="go">Privada sem fins lucrativos    0.861284</span>
+<span class="go">Pública Estadual               0.915827</span>
+<span class="go">Pública Federal                0.954435</span>
+<span class="go">Pública Municipal              0.918509</span>
+</pre></div>
+</div>
+<p>As we can see, they aren’t really different; All of them are between 2 and 3.</p>
+<p>Now, to the actual plotting, we get the df containing the means for each state:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">createobjects</span><span class="o">.</span><span class="n">create_mean_of_general_grade</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="go">   Sigla da UF    Conceito Enade (Contínuo)</span>
+<span class="go">0            AC                    1.978276</span>
+<span class="go">1            AL                    1.854321</span>
+<span class="go">2            AM                    1.990718</span>
+<span class="go">3            AP                    1.965472</span>
+<span class="go">4            BA                    2.478058</span>
+<span class="go">5            CE                    2.369505</span>
+<span class="go">6            DF                    3.557844</span>
+<span class="go">7            ES                    3.022967</span>
+<span class="go">8            GO                    2.101168</span>
+<span class="go">9            MA                    1.968111</span>
+<span class="go">10           MG                    2.910275</span>
+<span class="go">11           MS                    2.201744</span>
+<span class="go">12           MT                    1.885990</span>
+<span class="go">13           PA                    1.874467</span>
+<span class="go">14           PB                    2.409157</span>
+<span class="go">15           PE                    2.322109</span>
+<span class="go">16           PI                    2.079104</span>
+<span class="go">17           PR                    2.867315</span>
+<span class="go">18           RJ                    3.278528</span>
+<span class="go">19           RN                    2.665535</span>
+<span class="go">20           RO                    1.947105</span>
+<span class="go">21           RR                    1.816065</span>
+<span class="go">22           RS                    2.894011</span>
+<span class="go">23           SC                    3.247607</span>
+<span class="go">24           SE                    2.463977</span>
+<span class="go">25           SP                    3.201814</span>
+<span class="go">26           TO                    1.829220</span>
+</pre></div>
+</div>
+<p>We can already see that some states excel the others considerably. We will be
+able to see that these states are near each other when we plot a map with this
+data.</p>
+<p>After some mapa data manipulation that isn’t related to the actual data analysis,
+this is the result:</p>
+<img alt="../../data/graphs/average_grades_states.png" src="../../data/graphs/average_grades_states.png" />
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Linguagens de Programação - A1</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_analysis_larissa.html">Analysis of The Mean Non Attendance Rates for Each Course - Larissa</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Analysis of the Average Enade Grade for Each State - Pedro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_analysis_vitor.html">Data Analisys - Vitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_objects_doc.html">Module createobjects.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_clean_doc.html">Module data_cleaner.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="downloads_doc.html">Module downloads.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs_doc.html">Module graphs.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-analysis">Data Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#documentations">Documentations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis_larissa.html">Analysis of The Mean Non Attendance Rates for Each Course - Larissa</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Analysis of the Average Enade Grade for Each State - Pedro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis_vitor.html">Data Analisys - Vitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_objects_doc.html">Module createobjects.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_clean_doc.html">Module data_cleaner.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloads_doc.html">Module downloads.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphs_doc.html">Module graphs.py</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/data_analysis_pedro.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Larissa Lemos, Pedro Tokar, Vitor Nascimento.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/data_analysis_pedro.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
