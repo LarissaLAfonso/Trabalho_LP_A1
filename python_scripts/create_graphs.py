@@ -8,7 +8,6 @@ from matplotlib.colors import Normalize
 import numpy as np
 import pandas as pd
 import geopandas as gpd
-import createobjects as co
 import textwrap
 import doctest
 
