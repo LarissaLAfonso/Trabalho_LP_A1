@@ -1,0 +1,26 @@
+.. _data_analysis_vitor:
+
+Data Analisys - Vitor
+=====================
+
+I decided to analyse the average scores for each evaluation category in every region of Brazil.
+
+I also wanted to see if there's a connection between the regions in Brazil and the performance of higher education institutions in the ENADE.
+
+>>> import createobjects
+>>> import data_cleaner
+>>> data_path = "./data/dataframes/resultados_cpc_2021.xlsx"
+>>> raw_df = createobjects.load_data_as_df(data_path)
+>>> df = data_cleaner.dataframe_cleaner(raw_df)
+>>> createobjects.create_average_nota_by_region(df)
+                   Organização Didático-Pedagógica         Infraestrutura e Instalações Físicas          Oportunidade de Ampliação da Formação           Regime de Trabalho  
+Região                                                                                                                                                                                                                        
+Centro-Oeste                              2.890878                                     3.100408                                       2.887566                     4.528085  
+Nordeste                                  2.714391                                     2.717979                                       2.656292                     4.529913  
+Norte                                     2.907651                                     2.196363                                       2.142814                     3.410240  
+Sudeste                                   2.775890                                     3.092782                                       2.750304                     4.018040  
+Sul                                       3.050434                                     3.354842                                       3.108503                     4.199876  
+
+.. image:: ../../data/graphs/average_scores.png
+
+As you can see, there isn't a very clear relationship between the regions in Brazil and their performance in the ENADE. However, it's possible to observe that, on the whole, the northern region tends to have slightly lower scores.
